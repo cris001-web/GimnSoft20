@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<!-- bootstrap -->
+	<link rel="stylesheet" type="text/css" href="librerias/bootstrap4/css/bootstrap.min.css">
+	<!-- alertify -->
+	<link rel="stylesheet" type="text/css" href="librerias/alertifyjs/css/alertify.css">
+	<link rel="stylesheet" type="text/css" href="librerias/alertifyjs/css/themes/default.css">
+</head>
+<body>
+	<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+		<a  class="navbar-brand" href="#">GIMNSOFT</a>
+
+		 <!-- Links -->
+		 <ul class="navbar-nav ">
+		 	<li class="navbar-item">
+		 		<a href="#" class="nav-link">e1</a>
+		 	</li>
+		 
+
+		  <!-- Dropdown -->
+		    <li class="nav-item dropdown">
+		      <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+		        Dropdown link
+		      </a>
+		      <div class="dropdown-menu">
+		        <a class="dropdown-item" href="#">Link 1</a>
+		        <a class="dropdown-item" href="#">Link 2</a>
+		        <a class="dropdown-item" href="#">Link 3</a>
+		      </div>
+		    </li>
+
+		    
+		 </ul>
+		 <!-- buscador -->
+		 <ul class="navbar-nav ml-auto">
+		 	<form class="form-inline ">
+			 	<input class="form-control mr-sm-2" id="search" type="search" placeholder="Search">
+			 	<button class="btn btn-success my-2 my-sm-0" type="submit" id="btnListar">Listar Todo</button>
+		 	
+		 	</form>
+		 </ul>
+
+	</nav>
+	<!-- tabla -->
+	
+	<div class="container my-4">
+			<div class="my-2">
+				<button class="btn btn-primary my-2 my-sm-0" type="submit" data-toggle="modal" data-target="#modalNuevo" >Nuevo</button>
+			</div>
+			<table class="table">
+				<thead class="thead-dark">
+					<tr>
+						
+						<th scope="col">#</th>
+						<th scope="col">Nombre</th>
+						<th scope="col">Opciones</th>
+
+
+					</tr>
+				</thead>
+				<tbody id="rol-result"></tbody>
+			</table>
+	</div>
+
+	<!-- BODY MODALS -->
+				<!-- Modal nuevo -->
+	<div class="modal" tabindex="-1" role="dialog" id="modalNuevo">
+		<div class="modal-dialog" role="document">
+		  <div class="modal-content">
+			<div class="modal-header">
+			  <h5 class="modal-title ">Agregar Nuevo</h5>
+			  <button type="button" class="close" data-dismiss="modal" aria-label="Close" >
+				<span aria-hidden="true">&times;</span>
+			  </button>
+			</div>
+			<div class="modal-body">
+			    <form id="nuevo">
+					<div class="form-group">
+						<label class="descripcion">Ingrese Descripción del Rol</label>
+						<input type="text" class="form-control" id="descripcion" placeholder="Ingrese Descripción del Rol"></input>
+
+					</div>
+					
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="close();">Close</button>
+						<button type="submit" class="btn btn-primary" onclick="return validar();">GUARDAR</button>
+						</div>
+				</form>
+			</div>
+					
+		  </div>
+		</div>
+	  </div>
+
+	  <!-- Modal Editar -->
+	<div class="modal" tabindex="-1" role="dialog" id="modalEditar">
+		<div class="modal-dialog" role="document">
+		  <div class="modal-content">
+			<form id="editar">
+				<div class="modal-header">
+				<h5 class="modal-title ">Editar</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close" >
+					<span aria-hidden="true">&times;</span>
+				</button>
+				</div>
+				<div class="modal-body">
+				
+						<input type="hidden" id="id_role"></input>
+						<div class="form-group">
+							<label class="descripcion">Ingrese Descripción del Rol</label>
+							<input type="text" class="form-control" id="descripcione" placeholder="Ingrese Descripción del Rol"></input>
+
+						</div>
+						
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-dismiss="modal" >Close</button>
+							<button type="submit" class="btn btn-primary" onclick="return validarEditar();" >GUARDAR</button>
+							</div>
+				</form>
+			</div>
+					
+		  </div>
+		</div>
+	  </div>
+
+<!-- jquery -->
+<script type="text/javascript" src="librerias/bootstrap4/js/jquery-3.5.1.min.js"></script>
+<!-- bootstrap js -->
+<script type="text/javascript" src="librerias/bootstrap4/js/bootstrap.min.js"></script>
+<script src="librerias/alertifyjs/alertify.js"></script>
+<script src="validaciones/rol/validar-rol.js"></script>
+<script type="text/javascript" src="jq/rol.js"></script>
+</body>
+</html>
