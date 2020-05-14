@@ -2,12 +2,21 @@
 <html>
 <head>
 	<title></title>
+	<script type="text/javascript" src="librerias/bootstrap4/js/jquery-3.5.1.min.js"></script>
+	<script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+	
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 	<!-- bootstrap -->
-	<!-- <link rel="stylesheet" type="text/css" href="librerias/bootstrap4/css/bootstrap.min.css"> -->
+	 <link rel="stylesheet" type="text/css" href="librerias/bootstrap4/css/bootstrap.min.css"> 
 	<!-- alertify -->
 	<link rel="stylesheet" type="text/css" href="librerias/alertifyjs/css/alertify.css">
 	<link rel="stylesheet" type="text/css" href="librerias/alertifyjs/css/themes/default.css">
+	<!-- bootstrap js -->
+	<script type="text/javascript" src="librerias/bootstrap4/js/bootstrap.min.js"></script> 
+	<script src="librerias/alertifyjs/alertify.js"></script>
+	<script src="validaciones/rol/validar-rol.js"></script>
+	<script type="text/javascript" src="jq/rol.js"></script>
 
 	
 
@@ -54,7 +63,7 @@
 			<div class="my-2">
 				<button class="btn btn-primary my-2 my-sm-0" type="submit" data-toggle="modal" data-target="#modalNuevo" >Nuevo</button>
 			</div>
-			<table class="table" id="dataTable">
+			<table class="table" id="dataTableb">
 				<thead class="thead-dark">
 					<tr>
 						
@@ -131,11 +140,13 @@
 	  </div>
 
 <!-- jquery -->
-<!-- <script type="text/javascript" src="librerias/bootstrap4/js/jquery-3.5.1.min.js"></script> -->
-<!-- bootstrap js -->
- <!-- <script type="text/javascript" src="librerias/bootstrap4/js/bootstrap.min.js"></script>  -->
-<script src="librerias/alertifyjs/alertify.js"></script>
-<script src="validaciones/rol/validar-rol.js"></script>
-<script type="text/javascript" src="jq/rol.js"></script>
+
+
+<script type="text/javascript">
+	$(document).ready(function() {
+    $('#dataTableb').DataTable();
+});
+</script>
+
 </body>
 </html>
