@@ -34,30 +34,30 @@ $(document).ready(function () {
 			});
 	})
 
-	// funcion listar todos los resultados
-	function listarTodo(){
-		$.ajax({
-			url:'php/listarRol.php',
-			type:'GET',
-			success: function (response){
-				let datos = JSON.parse(response);
-				plantilla = '';
-				datos.forEach(dato =>{
-					plantilla += `
-					<tr idRol="${dato.id_rol}" > 
-						<td >${dato.id_rol}</td>
-						<td>${dato.descripcion}</td>
+	// // funcion listar todos los resultados
+	// function listarTodo(){
+	// 	$.ajax({
+	// 		url:'php/listarRol.php',
+	// 		type:'GET',
+	// 		success: function (response){
+	// 			let datos = JSON.parse(response);
+	// 			plantilla = '';
+	// 			datos.forEach(dato =>{
+	// 				plantilla += `
+	// 				<tr idRol="${dato.id_rol}" > 
+	// 					<td >${dato.id_rol}</td>
+	// 					<td>${dato.descripcion}</td>
 						
-						<td>
-							<button class=" rol-borrar btn btn-danger">Eliminar</button>
-							<button class=" rol-editar btn btn-warning" data-toggle="modal" data-target="#modalEditar">Editar</button>
-						</td>
-					</tr>`
-				});
-				$('#rol-result').html(plantilla);
-			}
-		});
-	}
+	// 					<td>
+	// 						<button class=" rol-borrar btn btn-danger">Eliminar</button>
+	// 						<button class=" rol-editar btn btn-warning" data-toggle="modal" data-target="#modalEditar">Editar</button>
+	// 					</td>
+	// 				</tr>`
+	// 			});
+	// 			$('#rol-result').html(plantilla);
+	// 		}
+	// 	});
+	// }
 
 	//nuevo
 	$('#nuevo').submit(function(e){
@@ -116,6 +116,8 @@ $(document).ready(function () {
 		
 	});	
 
+
+	
 	//editar
 	$('#editar').submit(function(e){
 		const postData = {
@@ -140,5 +142,6 @@ $(document).ready(function () {
 		e.preventDefault();
 		
 	});
+
 	
 });
