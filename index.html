@@ -6,22 +6,22 @@
 	<script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
 	
 	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js">
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-	<!-- bootstrap -->
-
+	
 	<!-- <link rel="stylesheet" type="text/css" href="librerias/bootstrap4/css/bootstrap.min.css"> -->
 	<!-- alertify -->
-	 <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
-     <script type="text/javascript" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
-     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js">
-
+	<link rel="stylesheet" type="text/css" href="librerias/alertifyjs/css/alertify.css">
+	<link rel="stylesheet" type="text/css" href="librerias/alertifyjs/css/themes/default.css"> 
+    <script src="librerias/alertifyjs/alertify.js"></script>
+    
+	<!-- bootstrap -->
 	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css">
 	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css">
-	<!-- <link rel="stylesheet" type="text/css" href="librerias/alertifyjs/css/alertify.css">
-	<link rel="stylesheet" type="text/css" href="librerias/alertifyjs/css/themes/default.css"> -->
+	
 	<!-- bootstrap js -->
 	<script type="text/javascript" src="librerias/bootstrap4/js/bootstrap.min.js"></script> 
-	<!-- <script src="librerias/alertifyjs/alertify.js"></script> -->
+	
 	<script src="validaciones/rol/validar-rol.js"></script>
 	<script type="text/javascript" src="jq/rol.js"></script>
 
@@ -148,11 +148,7 @@
 	  </div>
 
 
-<!-- bootstrap js -->
- <script type="text/javascript" src="librerias/bootstrap4/js/bootstrap.min.js"></script> -->
- <script src="librerias/alertifyjs/alertify.js"></script>
-<script src="validaciones/rol/validar-rol.js"></script>-->
-<script type="text/javascript" src="jq/rol.js"></script>
+
    <script> 
        $(document).ready(function() {
     $('#dataTabler').DataTable({
@@ -165,7 +161,35 @@
     		{"data":"id_rol"},
     		{"data":"descripcion"},
     		
-    		]
+			],
+			"language":{
+				"sProcessing":     "Procesando...",
+				"sLengthMenu":     "Mostrar _MENU_ registros",
+				"sZeroRecords":    "No se encontraron resultados",
+				"sEmptyTable":     "Ningún dato disponible en esta tabla",
+				"sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+				"sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
+				"sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+				"sInfoPostFix":    "",
+				"sSearch":         "Buscar:",
+				"sUrl":            "",
+				"sInfoThousands":  ",",
+				"sLoadingRecords": "Cargando...",
+				"oPaginate": {
+					"sFirst":    "Primero",
+					"sLast":     "Último",
+					"sNext":     "Siguiente",
+					"sPrevious": "Anterior",
+				},
+				"oAria": {
+					"sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+					"sSortDescending": ": Activar para ordenar la columna de manera descendente",
+				},
+				"buttons": {
+					"copy": "Copiar",
+					"colvis": "Visibilidad",
+				}
+			}
     });
 } );
    </script>
