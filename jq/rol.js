@@ -1,65 +1,7 @@
  
 $(document).ready(function () {
-	listarTodo();//llamo a funcion para listar apenas recargue
-
-	//Listar todo desde boton listar del buscador
-	$(document).on('click', '#btnListar', function(){
-		listarTodo();
-		
-	});
-
-	// buscar
-	$('#search').keyup(function(e){
-		
-		let search = $('#search').val();
-			$.ajax({
-				url:'php/buscar-rol.php',
-				type:'POST',
-				data:{search},
-				success: function(response){
-					console.log(response);
-					let datos = JSON.parse(response);
-					plantilla = '';
-					datos.forEach(dato =>{
-						plantilla += `<tr idRol="${dato.id_rol}" > 
-						<td >${dato.id_rol}</td>
-						<td>${dato.descripcion}</td>
-						<td>
-							<button class="rol-borrar btn btn-danger">Eliminar</button>
-						</td>
-						</tr>`
-					});
-					$('#rol-result').html(plantilla);
-				}
-			});
-	})
-
-	// // funcion listar todos los resultados
-	// function listarTodo(){
-	// 	$.ajax({
-	// 		url:'php/listarRol.php',
-	// 		type:'GET',
-	// 		success: function (response){
-	// 			let datos = JSON.parse(response);
-	// 			plantilla = '';
-	// 			datos.forEach(dato =>{
-	// 				plantilla += `
-	// 				<tr idRol="${dato.id_rol}" > 
-	// 					<td >${dato.id_rol}</td>
-	// 					<td>${dato.descripcion}</td>
-						
-	// 					<td>
-	// 						<button class=" rol-borrar btn btn-danger">Eliminar</button>
-	// 						<button class=" rol-editar btn btn-warning" data-toggle="modal" data-target="#modalEditar">Editar</button>
-	// 					</td>
-	// 				</tr>`
-	// 			});
-	// 			$('#rol-result').html(plantilla);
-	// 		}
-	// 	});
-	// }
-
-	//nuevo
+	// listarTodo();//llamo a funcion para listar apenas recargue
+//nuevo
 	$('#nuevo').submit(function(e){
 		const postDato = {
 			descripcion: $('#descripcion').val(),
