@@ -21,8 +21,8 @@ $(document).ready(function () {
 					let datos = JSON.parse(response);
 					plantilla = '';
 					datos.forEach(dato =>{
-						plantilla += `<tr>
-						<td class="idRol">${dato.id_rol}</td>
+						plantilla += `<tr idRol="${dato.id_rol}" > 
+						<td >${dato.id_rol}</td>
 						<td>${dato.descripcion}</td>
 						<td>
 							<button class="rol-borrar btn btn-danger">Eliminar</button>
