@@ -37,24 +37,24 @@ $(document).ready(function () {
 					alertify.success('SE BORRO EXITOSAMENTE');
 
 				}
-				listarTodo();
+				
 			});
 		}
 	});
 		
 	//carga los inputs para mostrar
 	$(document).on('click','.rol-editar',function(){
-		var elemento = $(this)[0].parentElement.parentElement;
-		var id_rol = $(elemento).attr('idRol');
-		$.post('php/rol-solo.php',{id_rol},function(respuesta){
-			var datoRe = JSON.parse(respuesta);
-			console.log(respuesta);
+		var data = table.row($(this).parents("tr")).data();
+		console.log(data);
+		// $.post('php/rol-solo.php',{id_rol},function(respuesta){
+		// 	var datoRe = JSON.parse(respuesta);
+		// 	console.log(respuesta);
 		
 			
-			$('#descripcione').val(datoRe.descripcion);
-			$('#id_role').val(datoRe.id_rol);
+		// 	$('#descripcione').val(datoRe.descripcion);
+		// 	$('#id_role').val(datoRe.id_rol);
 			
-		});
+		//});
 		
 	});	
 
