@@ -104,6 +104,7 @@ $(document).ready(function () {
 		});	
 	 //nuevo
 	$('#frmnuevo').submit(function(e){
+		$('#frmnuevo').trigger('reset');
 		e.preventDefault();
 		
 		const postData = {

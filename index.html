@@ -103,8 +103,8 @@
 					</div>
 					
 					<div class="modal-footer">
-						<button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="close();">Close</button>
-						<button type="submit" class="btn btn-primary" >GUARDAR</button>
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+						<button type="submit" class="btn btn-primary" onclick="return validar();">GUARDAR</button>
 						</div>
 				</form>
 			</div>
@@ -133,12 +133,12 @@
 
 
 
-							
+
 						</div>
 						
 						<div class="modal-footer">
 							<button type="button" class="btn btn-secondary" data-dismiss="modal" >Close</button>
-							<button type="submit" class="btn btn-primary" >Editar</button>
+							<button type="submit" class="btn btn-primary" onclick="return validarEditar();">Editar</button>
 							</div>
 			</form>
 				</div>
@@ -170,7 +170,7 @@
 						</div>
 						
 						<div class="modal-footer">
-							<button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="close();">Close</button>
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 							<button type="submit" class="btn btn-danger" >Eliminar</button>
 							</div>
 					</form>
