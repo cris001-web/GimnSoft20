@@ -7,7 +7,7 @@
 		$query = "DELETE FROM rol WHERE id_rol ='$id_rol'";
 		echo $result =  mysqli_query($conexion,$query);
 		if (!$result) {
-		echo 'ERROR, BASE DE DATOS ';
+		echo 'ERROR EN LA BASE DE DATOS ';
 		}else{
             echo 'SE BORRO EXITOSAMENTE';
         }

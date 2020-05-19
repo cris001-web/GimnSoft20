@@ -2,30 +2,34 @@
 <html>
 <head>
 	<title></title>
-	<script type="text/javascript" src="librerias/bootstrap4/js/jquery-3.5.1.min.js"></script>
-	<script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+	<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+	<script type="text/javascript" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+	<script type="text/javascript"   src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
 	
-	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
-	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js">
+	
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 	
-	<!-- <link rel="stylesheet" type="text/css" href="librerias/bootstrap4/css/bootstrap.min.css"> -->
+	
 	<!-- alertify -->
 	<link rel="stylesheet" type="text/css" href="librerias/alertifyjs/css/alertify.css">
 	<link rel="stylesheet" type="text/css" href="librerias/alertifyjs/css/themes/default.css"> 
     <script src="librerias/alertifyjs/alertify.js"></script>
     
 	<!-- bootstrap -->
-	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css">
-	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css"></link> 
+	<link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css"></link>
+
+	<link rel="stylesheet" href="estilos/style-gral.css"></link>
 	
 	<!-- bootstrap js -->
-	<script type="text/javascript" src="librerias/bootstrap4/js/bootstrap.min.js"></script> 
-	
+	<script type="text/javascript"   src="librerias/bootstrap4/js/bootstrap.min.js"></script>
+
 	<script src="validaciones/rol/validar-rol.js"></script>
 	<script type="text/javascript" src="jq/rol.js"></script>
 
+	<!-- fontawesone -->
 	
+	<link rel="stylesheet" type="text/css" href="librerias/fontawesome/fontawesome/css/all.min.css">
 
 </head>
 <body>
@@ -53,24 +57,17 @@
 
 		    
 		 </ul>
-		 <!-- buscador -->
-		 <ul class="navbar-nav ml-auto">
-		 	<form class="form-inline ">
-			 	<input class="form-control mr-sm-2" id="search" type="search" placeholder="Search">
-			 	<button class="btn btn-success my-2 my-sm-0" type="submit" id="btnListar">Listar Todo</button>
-		 	
-		 	</form>
-		 </ul>
+		
 
 	</nav>
 	<!-- tabla -->
 	
 	<div class="container my-4">
 			<div class="my-2">
-				<button class="btn btn-primary my-2 my-sm-0" type="submit" data-toggle="modal" data-target="#modalNuevo" >Nuevo</button>
+				<button class="btn btn-primary my-2 my-sm-0" type="submit" data-toggle="modal" data-target="#modalNuevo" m-3 ><i class="icon fas fa-user-plus">Nuevo</i></button>
 			</div>
 
-			<table class="table" id="dataTabler"  width="100%">
+			<table class=" table table-striped table-bordered"  id="dataTabler"  width="100%">
 
 				<thead class="thead-dark">
 					<tr>
@@ -82,7 +79,7 @@
 
 					</tr>
 				</thead>
-				<tbody id="rol-result"></tbody>
+				
 			</table>
 	</div>
 
@@ -91,14 +88,14 @@
 	<div class="modal" tabindex="-1" role="dialog" id="modalNuevo">
 		<div class="modal-dialog" role="document">
 		  <div class="modal-content">
-			<div class="modal-header">
-			  <h5 class="modal-title ">Agregar Nuevo</h5>
+			<div class="head-new modal-header">
+			  <h5 class="modal-title "><i class="icon fas fa-user-plus"></i>Agregar un Nuevo Rol</h5>
 			  <button type="button" class="close" data-dismiss="modal" aria-label="Close" >
 				<span aria-hidden="true">&times;</span>
 			  </button>
 			</div>
 			<div class="modal-body">
-			    <form id="nuevo">
+			    <form id="frmnuevo">
 					<div class="form-group">
 						<label class="descripcion">Ingrese Descripción del Rol</label>
 						<input type="text" class="form-control" id="descripcion" placeholder="Ingrese Descripción del Rol"></input>
@@ -107,7 +104,7 @@
 					
 					<div class="modal-footer">
 						<button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="close();">Close</button>
-						<button type="submit" class="btn btn-primary" onclick="return validar();">GUARDAR</button>
+						<button type="submit" class="btn btn-primary" >GUARDAR</button>
 						</div>
 				</form>
 			</div>
@@ -120,79 +117,69 @@
 	<div class="modal" tabindex="-1" role="dialog" id="modalEditar">
 		<div class="modal-dialog" role="document">
 		  <div class="modal-content">
-			<form id="editar">
-				<div class="modal-header">
-				<h5 class="modal-title ">Editar</h5>
+			<form id="frmeditar">
+				<div class=" head-edit modal-header">
+				<h5 class="modal-title "><i class='icon fas fa-user-edit'></i>Editar Rol</h5>
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close" >
 					<span aria-hidden="true">&times;</span>
 				</button>
 				</div>
 				<div class="modal-body">
-				
-						<input type="hidden" id="id_role"></input>
+					<input type="hidden" id="id_role"></input>
 						<div class="form-group">
 							<label class="descripcion">Ingrese Descripción del Rol</label>
 							<input type="text" class="form-control" id="descripcione" placeholder="Ingrese Descripción del Rol"></input>
 
+
+
+
+							
 						</div>
 						
 						<div class="modal-footer">
 							<button type="button" class="btn btn-secondary" data-dismiss="modal" >Close</button>
-							<button type="submit" class="btn btn-primary" onclick="return validarEditar();" >GUARDAR</button>
+							<button type="submit" class="btn btn-primary" >Editar</button>
 							</div>
-				</form>
+			</form>
+				</div>
+				
+						
+		
 			</div>
 					
 		  </div>
 		</div>
-	  </div>
 
-
-
-   <script> 
-       $(document).ready(function() {
-    $('#dataTabler').DataTable({
-    	
-    		"ajax":{
-    			"url":"php/listarRol.php",
-    			"dataSrc":""
-    		},
-    		"columns":[
-    		{"data":"id_rol"},
-			{"data":"descripcion"},
-			{"defaultContent":"<button type='button' class='rol-borrar btn btn-danger'>Eliminar</button><button type='button' class='btn btn-warning'>Editar</button>"}
-    		
-			],
-			"language":{
-				"sProcessing":     "Procesando...",
-				"sLengthMenu":     "Mostrar _MENU_ registros",
-				"sZeroRecords":    "No se encontraron resultados",
-				"sEmptyTable":     "Ningún dato disponible en esta tabla",
-				"sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-				"sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
-				"sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
-				"sInfoPostFix":    "",
-				"sSearch":         "Buscar:",
-				"sUrl":            "",
-				"sInfoThousands":  ",",
-				"sLoadingRecords": "Cargando...",
-				"oPaginate": {
-					"sFirst":    "Primero",
-					"sLast":     "Último",
-					"sNext":     "Siguiente",
-					"sPrevious": "Anterior",
-				},
-				"oAria": {
-					"sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
-					"sSortDescending": ": Activar para ordenar la columna de manera descendente",
-				},
-				"buttons": {
-					"copy": "Copiar",
-					"colvis": "Visibilidad",
-				}
-			}
-    });
-} );
-   </script>
+		 <!-- Modal Borrar -->
+		 <div class="modal" tabindex="-1" role="dialog" id="modalBorrar">
+			<div class="modal-dialog" role="document">
+			  <div class="modal-content">
+				<div class=" head-delete modal-header">
+				  <h5 class="modal-title "><i class='icon far fa-trash-alt'></i>Eliminar Rol</h5>
+				  <button type="button" class="close" data-dismiss="modal" aria-label="Close" >
+					<span aria-hidden="true">&times;</span>
+				  </button>
+				</div>
+				<div class="modal-body">
+					<form id="frmborrar">
+						<div class="form-group">
+							<input type="hidden" id="id_rolel"></input>
+							<label class="descripcion">¿Seguro Que Deseas Eliminar el Registro?</label>
+							
+	
+						</div>
+						
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="close();">Close</button>
+							<button type="submit" class="btn btn-danger" >Eliminar</button>
+							</div>
+					</form>
+				</div>
+						
+			  </div>
+			</div>
+		  </div>
+	
+	  
 </body>
 </html>

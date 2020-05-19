@@ -1,0 +1,22 @@
+.icon:before {
+    margin-right: 10px;
+}
+.btn-warning {
+    color: #fbfbfb;
+}
+button, html [type="button"], [type="reset"], [type="submit"] {
+    
+    margin-right: 9px;
+}
+.head-new{
+    background: teal;
+    color: white;
+}
+.head-edit{
+    background: #ffc721 ;
+    color: white;
+}
+.head-delete{
+    background: #d20606;
+    color: white;
+}
