@@ -6,11 +6,11 @@ $conexion= mysqli_connect(
 			'',
 			'gimnsoft'
 );
-	//  if ($conexion) {
-	//  	echo "conexion exitosa";
+	//   if ($conexion) {
+	//   	echo "conexion exitosa";
 	//  }else{
-	//  	echo "NO CONEXION";
-	//  }
+	//   	echo "NO CONEXION";
+	//   }
 
 
 

@@ -4,7 +4,7 @@ $(document).ready(function () {
 	var table =$('#dataTabler').DataTable({
     	
 		"ajax":{
-			"url":"php/listarRol.php",
+			"url":"../php/listarRol.php",
 			"dataSrc":""
 		},
 		"columns":[
@@ -62,7 +62,7 @@ $(document).ready(function () {
 			id_rol: $('#id_role').val()
 		};
 	
-		$.post('php/editar-rol.php', postData,function(respuesta) {
+		$.post('../php/editar-rol.php', postData,function(respuesta) {
 			console.log(respuesta);
 				if(respuesta=='ERROR EN LA BASE DE DATOS'){
 					alertify.error(respuesta);
@@ -87,7 +87,7 @@ $(document).ready(function () {
 				id_rol: $('#id_rolel').val()
 			};
 		
-			$.post('php/borrar-rol.php', postData,function(respuesta) {
+			$.post('../php/borrar-rol.php', postData,function(respuesta) {
 				console.log(respuesta);
 					if(respuesta=='ERROR EN LA BASE DE DATOS'){
 						alertify.error(respuesta);
@@ -104,13 +104,13 @@ $(document).ready(function () {
 		});	
 	 //nuevo
 	$('#frmnuevo').submit(function(e){
-		$('#frmnuevo').trigger('reset');
+		
 		e.preventDefault();
 		
 		const postData = {
 			descripcion: $('#descripcion').val(),
 		};
-		$.post('php/agregar-rol.php',postData,function(respuesta){
+		$.post('../php/agregar-rol.php',postData,function(respuesta){
 			if(respuesta=='YA EXISTE ESTE DESCRIPCIÓN, INTENTE CON OTRA!'){
 				alertify.error(respuesta);
 			}else if(respuesta=='ERROR DE BASE DE DATOS'){
