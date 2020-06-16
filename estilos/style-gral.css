@@ -20,3 +20,19 @@ button, html [type="button"], [type="reset"], [type="submit"] {
     background: #d20606;
     color: white;
 }
+.mensaje{
+    font-size: 15px;
+    line-height: 21px;
+    letter-spacing: -0.047em;
+    font-weight: 400;
+    font-style: italic;
+    background: blanchedalmond;
+    text-align: center;
+}
+.btnFile{
+    font-size: 0.6rem;
+    line-height: 2;
+    letter-spacing: 0em;
+    font-weight: 100;
+    font-style: italic;
+}
