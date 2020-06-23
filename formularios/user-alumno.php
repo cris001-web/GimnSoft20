@@ -53,6 +53,8 @@
                     <th scope="col">Localidad</th>
                     <th scope="col">Sexo</th>
                     <th scope="col">Descripcion</th>
+                    <th scope="col">Contraseña</th>
+                    <th scope="col">Objetivo</th>
                     <th scope="col">foto</th>
                     <th scope="col">Opciones</th>
 
@@ -86,7 +88,7 @@
                         </div> 
                         <div class="col-4">
                             <label class="contraseña">Contraseña</label>  
-                            <input type="password" class="form-control" placeholder="Contraseña" name="contraseña" id="contraseña">
+                            <input type="text" class="form-control" placeholder="Contraseña" name="contraseña" id="contraseña">
                         </div>
                         <div class="col-4">
                             <label class="foto">foto</label>  
@@ -124,7 +126,7 @@
                         <div class="col-4">
                             <label class="localidad">Localidad</label>
                             <select class="custom-select mr-sm-2" name="select_loc" id="select_loc" >
-                                <option value="" selected>Elegir Localidad</option>
+                                
                                 <?php
                                
                                     include('../database.php');
@@ -135,6 +137,7 @@
                                         $id_localidad=$row['id_localidad'];
                                         $descripcion_loc=$row['descripcion_loc'];
                                 ?>
+                                
                                         <option value='<?php echo $id_localidad; ?>'><?php echo $descripcion_loc;?></option>
                                 <?php
                                     }
@@ -213,8 +216,8 @@
     <div class="modal" tabindex="-1" role="dialog" id="modalEditarUA" >
 		<div class="modal-dialog modal-lg" role="document">
 		  <div class="modal-content">
-			<div class="head-new modal-header">
-			  <h5 class="modal-title "><i class="icon fas fa-user-plus"></i>Editar</h5>
+			<div class=" head-edit modal-header">
+            <h5 class="modal-title "><i class='icon fas fa-user-edit'></i>Editar Usuario-Alumno</h5>
 			  <button type="button" class="close" data-dismiss="modal" aria-label="Close" >
 				<span aria-hidden="true">&times;</span>
 			  </button>
@@ -227,7 +230,7 @@
                     <!--MENMSAJES  -->
                     <div class="form-row">
 
-                        <input type="hidden" id="id_usuarioE">
+                        <input type="hidden" name="id_usuarioE" id="id_usuarioE">
                         <div class="col-4">
                         
                           <label class="alias">Alias</label>  
@@ -235,7 +238,10 @@
                         </div> 
                         <div class="col-4">
                             <label class="contraseña">Contraseña</label>  
-                            <input type="password" class="form-control" placeholder="Contraseña" name="contraseñaE" id="contraseñaE">
+                            <input type="password" class="form-control" placeholder="Contraseña" name="contraseñaE" id="contraseñaE"><div class="input-group-append">
+                            <button id="show_password" class="btn btn-primary" type="button" onclick="mostrarPassword()"> <span class="fa fa-eye-slash icon"></span> </button>
+                            </div>
+                            
                         </div>
                         <div class="col-4">
                             <label class="foto">foto</label>  
@@ -272,9 +278,9 @@
                             <label class="localidad">Localidad</label>
                             
                             <select class="custom-select mr-sm-2" name="select_locE" id="select_locE" >
+                            <option value="" selected >Elegir Localidad</option>
+                          
                             
-                                <option value="id_select_locE" selected>Elegir Localidad</option>
-
                                 <?php
                                
                                     include('../database.php');
@@ -299,6 +305,7 @@
                             <label class="sexo">Sexo</label>
                             <select class="custom-select mr-sm-2" name="select_sexE" id="select_sexE">
                             <option value="" selected >Elegir Genero</option>
+                            
                             <?php
                               
                                include('../database.php');
@@ -351,7 +358,7 @@
                     <!--MENMSAJES  -->
 					<div class="modal-footer">
 						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-						<button type="submit" class="btn btn-primary" onclick="return validarUA();" >EDITAR</button>
+						<button type="submit" class="btn btn-warning" >EDITAR</button>
 					</div>
 				</form>
 			</div>

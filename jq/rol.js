@@ -52,6 +52,8 @@ $(document).ready(function () {
 	},1000);
 	editar("#dataTabler tbody", table);
 	borrar("#dataTabler tbody", table);
+
+	
 	//editar post
 	$("#frmeditar").submit(function(e){
 		

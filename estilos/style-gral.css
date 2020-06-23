@@ -36,3 +36,7 @@ button, html [type="button"], [type="reset"], [type="submit"] {
     font-weight: 100;
     font-style: italic;
 }
+.btn-edit{
+    background: #ffc721;
+    color: white;
+}

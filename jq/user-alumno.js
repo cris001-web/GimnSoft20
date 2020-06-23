@@ -15,7 +15,8 @@ $(document).ready(function () {
                 {"data":"descripcion_loc"},
                 {"data":"descripcion_sex"},
                 {"data":"descripcion"},
-                
+                {"data":"contraseña"},
+                {"data":"objetivo"},
                 {
                     "data":"foto",
                     "render":function(data,type,row){
@@ -52,8 +53,18 @@ $(document).ready(function () {
                         "copy": "Copiar",
                         "colvis": "Visibilidad",
                     }
-                }
-    
+                },
+                "columnDefs": [
+                    {
+                        "targets": [ 8 ],
+                        "visible": false,
+                        "searchable": false
+                    },
+                    {
+                        "targets": [ 9 ],
+                        "visible": false
+                    }
+                ]
 		
 			
     });
@@ -64,6 +75,7 @@ $(document).ready(function () {
     },1000);
 
     editar("#dataTableUA tbody", table);
+ 
 
     //nuevo   
      $('#frmnuevoUA').submit(function(e){ 
@@ -112,7 +124,49 @@ $(document).ready(function () {
         
     });
 
-   
+            //editar post
+            $("#frmEditarUA").submit(function(e){
+                e.preventDefault();
+                var formulario = $('#frmEditarUA');
+                var datos = formulario.serialize();
+                var archivos = new FormData();
+                var url = '../phpUA/editar-UA.php';
+
+                for(var i=0; i < (formulario.find('input[type=file]').length); i++){
+                    archivos.append((formulario.find('input[type="file"]:eq('+i+')').attr("name")),((formulario.find('input[type="file"]:eq('+i+')')[0]).files[0]));
+                    
+                }
+
+                $.ajax({
+           
+                    url:url+'?'+datos,
+                    type:'POST',
+                    contentType:false,
+                    data:archivos,
+                    processData:false,
+                  
+                   
+                    success:function(respuesta){
+                       console.log(respuesta);
+                        if(respuesta=='SE EDITÓ CORRECTAMENTE'){
+                         alertify.success('SE EDITÓ CORRECTAMENTE');
+                         $("#modalEditarUA").modal('hide');
+                        
+                        }else if (respuesta=='YA EXISTE EL ALIAS, INTENTE CON OTRO!'){
+                            alertify.error('YA EXISTE EL ALIAS, INTENTE CON OTRO!');
+                        }else if (respuesta=='ERROR EN LA BASE DE DATOS'){
+                            alertify.error('ERROR EN LA BASE DE DATOS');
+                        }
+                      $('#frmEditarUA').trigger('reset');
+                        return false;
+                    }
+                   
+                    
+                
+                });
+            });
+    
+                   
     
 });
 
@@ -120,18 +174,37 @@ $(document).ready(function () {
  var editar = function(tbody,table){
     $(tbody).on("click","button.editar",function(){
         var data = table.row($(this).parents("tr")).data();
-        var id_usuario=$("#id_usuarioE").val(data.id_usuario);
-        var alias=$("#aliasE").val(data.alias);
-        var contraseña=$("#contraseñaE").val(data.contraseña);
-        var nombre=$("#nombreE").val(data.nombre);
-        var apellido=$("#apellidoE").val(data.apellido);
-        var fecha_nac=$("#fecha_nacE").val(data.fecha_nac);
-        var direccion=$("#direccionE").val(data.direccion);
-        var num_telf=$("#num_telfE").val(data.num_telf);
-        var select_loc=$("#id_select_locE").val(data.descripcion_loc);
-        var select_sex=$("#select_sexE").val(data.sexo_id);
-        var select_rol=$("#select_rolE").val(data.rol_id);
-        var objetivo=$("#objetivoE").val(data.objetivo);
-        console.table(data);
-    });    
+        $("#id_usuarioE").val(data.id_usuario);
+        $("#aliasE").val(data.alias);
+        $("#contraseñaE").val(data.contraseña);
+        $("#nombreE").val(data.nombre);
+        $("#apellidoE").val(data.apellido);
+        $("#fecha_nacE").val(data.fecha_nac);
+        $("#direccionE").val(data.direccion);
+        $("#num_telfE").val(data.num_telf);
+        $("#select_locE").val(data.descripcion_loc);
+        $("#select_locE").val(data.localidad_id);
+        $("#select_sexE").val(data.descripcion_sex);
+        $("#select_sexE").val(data.sexo_id);
+        $("#select_rolE").val(data.rol_id);
+        $("#select_locE").val(data.descripcion);
+        $("#objetivoE").val(data.objetivo);
+        
+        $('#select_locE').append('<option value="'+Object.values([data.localidad_id])+'" selected="selected">'+Object.values([data.descripcion_loc])+'</option>'); 
+        $('#select_sexE').append('<option value="'+Object.values([data.sex_id])+'" selected="selected">'+Object.values([data.descripcion_sex])+'</option>'); 
+        $('#select_rolE').append('<option value="'+Object.values([data.rol_id])+'" selected="selected">'+Object.values([data.descripcion])+'</option>');
+
+    }); 
+
 }
+
+function mostrarPassword(){
+    var cambio = document.getElementById("contraseñaE");
+    if(cambio.type == "password"){
+        cambio.type = "text";
+        $('.icon').removeClass('fa fa-eye-slash').addClass('fa fa-eye');
+    }else{
+        cambio.type = "password";
+        $('.icon').removeClass('fa fa-eye').addClass('fa fa-eye-slash');
+    }
+} 
