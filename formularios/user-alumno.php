@@ -47,6 +47,7 @@
                     
                     <th scope="col">#</th>
                     <th scope="col">Alias</th>
+                    <th scope="col">id_alumno</th>
                     <th scope="col">Nombre</th>
                     <th scope="col">Apellido</th>
                     <th scope="col">Fecha de Nacimiento</th>
@@ -278,7 +279,7 @@
                             <label class="localidad">Localidad</label>
                             
                             <select class="custom-select mr-sm-2" name="select_locE" id="select_locE" >
-                            <option value="" selected >Elegir Localidad</option>
+                            <option value="" selected>Elegir Localidadv</option>
                           
                             
                                 <?php
@@ -367,7 +368,39 @@
 		</div>
     </div>
 
-    </body>
+     <!-- Modal Borrar -->
+	<div class="modal" tabindex="-1" role="dialog" id="modalBorrarUA">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+                <div class=" head-delete modal-header">
+                    <h5 class="modal-title "><i class='icon far fa-trash-alt'></i>Eliminar Usuario-Alumno</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" >
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                
+            </div>
+			<div class="modal-body">
+				<form id="frmborrarUA">
+					<div class="form-group">
+                        <input type="hidden" name="id_usuarioB" id="id_usuarioB"></input>
+                        <input type="hidden" name="id_alumnoB" id="id_alumnoB"></input>
+						<label class="descripcion">¿Seguro Que Deseas Eliminar el Registro?</label>
+							
+	
+					</div>
+						
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+						<button type="submit" class="btn btn-danger" >Eliminar</button>
+						</div>
+				</form>
+			</div>
+						
+		    </div>
+		</div>
+	</div>
+
+</body>
 <script type="text/javascript">
 
 </script>  

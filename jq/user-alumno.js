@@ -9,6 +9,7 @@ $(document).ready(function () {
             "columns":[
                 {"data":"id_usuario"},
                 {"data":"alias"},
+                {"data":"id_alumno"},
                 {"data":"nombre"},
                 {"data":"apellido"},
                 {"data":"fecha_nac"},
@@ -24,7 +25,7 @@ $(document).ready(function () {
                         return '<center><img src="'+url+"/"+data+'" width="120" height="80"/></center>';
                     }
                 },
-                {"defaultContent":"<button type='button' class='borrar btn btn-danger ' data-toggle='modal' data-target='#modalBorrar'><i class='icon far fa-trash-alt'></i>Eliminar</button><button type='button' class='editar btn btn-warning ' data-toggle='modal' data-target='#modalEditarUA'><i class='icon fas fa-user-edit '></i>Editar</button>"},
+                {"defaultContent":"<button type='button' class='borrar btn btn-danger ' data-toggle='modal' data-target='#modalBorrarUA'><i class='icon far fa-trash-alt'></i>Eliminar</button><button type='button' class='editar btn btn-warning ' data-toggle='modal' data-target='#modalEditarUA'><i class='icon fas fa-user-edit '></i>Editar</button>"},
                 ],
                 "language":{
                     "sProcessing":     "Procesando...",
@@ -56,12 +57,16 @@ $(document).ready(function () {
                 },
                 "columnDefs": [
                     {
-                        "targets": [ 8 ],
+                        "targets": [ 2 ],
                         "visible": false,
                         "searchable": false
                     },
                     {
                         "targets": [ 9 ],
+                        "visible": false
+                    },
+                    {
+                        "targets": [ 10 ],
                         "visible": false
                     }
                 ]
@@ -75,6 +80,7 @@ $(document).ready(function () {
     },1000);
 
     editar("#dataTableUA tbody", table);
+    borrar("#dataTableUA tbody", table);
  
 
     //nuevo   
@@ -165,6 +171,29 @@ $(document).ready(function () {
                 
                 });
             });
+        
+        //borrar post
+	$("#frmborrarUA").submit(function(e){
+		
+		e.preventDefault();
+			const postData = {
+                id_usuario: $('#id_usuarioB').val(),
+                id_alumno: $('#id_alumnoB').val()
+			};
+            
+			 $.post('../phpUA/borrar-UA.php', postData,function(respuesta) {
+				console.log(respuesta);
+					if(respuesta=='ERROR EN LA BASE DE DATOS'){
+						alertify.error(respuesta);
+					}else if(respuesta=='SE BORRO EXITOSAMENTE'){
+						alertify.success('SE BORRO EXITOSAMENTE!');
+						$("#modalBorrar").modal('hide');
+	
+					}
+		
+				
+			});
+	});	
     
                    
     
@@ -189,11 +218,22 @@ $(document).ready(function () {
         $("#select_rolE").val(data.rol_id);
         $("#select_locE").val(data.descripcion);
         $("#objetivoE").val(data.objetivo);
+
         
         $('#select_locE').append('<option value="'+Object.values([data.localidad_id])+'" selected="selected">'+Object.values([data.descripcion_loc])+'</option>'); 
         $('#select_sexE').append('<option value="'+Object.values([data.sex_id])+'" selected="selected">'+Object.values([data.descripcion_sex])+'</option>'); 
         $('#select_rolE').append('<option value="'+Object.values([data.rol_id])+'" selected="selected">'+Object.values([data.descripcion])+'</option>');
 
+    }); 
+
+}
+//borrar 
+var borrar = function(tbody,table){
+    $(tbody).on("click","button.borrar",function(){
+        var data = table.row($(this).parents("tr")).data();
+        $("#id_usuarioB").val(data.id_usuario);
+        $("#id_alumnoB").val(data.id_alumno);
+        
     }); 
 
 }
