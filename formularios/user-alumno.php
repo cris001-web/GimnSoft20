@@ -279,7 +279,7 @@
                             <label class="localidad">Localidad</label>
                             
                             <select class="custom-select mr-sm-2" name="select_locE" id="select_locE" >
-                            <option value="" selected>Elegir Localidadv</option>
+                            <option value="" selected>Elegir Localidad</option>
                           
                             
                                 <?php
