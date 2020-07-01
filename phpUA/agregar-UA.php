@@ -32,7 +32,7 @@ $foto_pre=$_FILES['foto'];
     $cant_row= mysqli_num_rows($result_repetir);
 
     if($cant_row==0){
-        $query_usuario = "INSERT INTO usuario (alias,contraseña) VALUES ('$alias','$contraseña')";
+        $query_usuario = "INSERT INTO usuario (alias,contraseña,rol_id) VALUES ('$alias','$contraseña','$select_rol')";
         $result_usuario =  mysqli_query($conexion,$query_usuario);
 
         //si inserccion de usuario es correcta, obtengo el id
@@ -47,9 +47,9 @@ $foto_pre=$_FILES['foto'];
                 }
                
                 $query_alumno = "INSERT INTO alumno 
-                            (nombre,apellido,fecha_nac,objetivo,direccion,num_telf,localidad_id,sexo_id,usuario_id,rol_id,foto) 
+                            (nombre,apellido,fecha_nac,objetivo,direccion,num_telf,localidad_id,sexo_id,usuario_id,foto) 
                             VALUES ('$nombre','$apellido','$fecha_nac','$objetivo','$direccion',
-                            '$num_telf','$select_loc','$select_sex','$var_usuario_id','$select_rol','$foto')";
+                            '$num_telf','$select_loc','$select_sex','$var_usuario_id','$foto')";
                 $result_alumno =  mysqli_query($conexion,$query_alumno);
                 //codigo foto
                 move_uploaded_file($_FILES['foto']['tmp_name'],'album/'.$foto);

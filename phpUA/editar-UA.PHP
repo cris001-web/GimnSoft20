@@ -34,12 +34,12 @@ $objetivo=$_GET["objetivoE"];
         
 
         if($cant_row==0){
-            $query_usuario_update = "UPDATE usuario SET alias = '$alias', contraseña = '$contraseña' WHERE id_usuario = '$id_usuario'";
+            $query_usuario_update = "UPDATE usuario SET alias = '$alias', contraseña = '$contraseña', rol_id='$rol_id'  WHERE id_usuario = '$id_usuario'";
             $result_usuario_update= mysqli_query($conexion,$query_usuario_update);
             //si query usuario es correcto, preparo query alumno
             if($result_usuario_update){
               
-                $query_alumno_update="UPDATE alumno SET nombre = '$nombre', apellido = '$apellido',fecha_nac='$fecha_nac',objetivo='$objetivo',direccion='$direccion',num_telf='$num_telf',localidad_id='$localidad_id',sexo_id='2', usuario_id='$id_usuario',rol_id='$rol_id',foto='$foto'  WHERE usuario_id = '$id_usuario'"; 
+                $query_alumno_update="UPDATE alumno SET nombre = '$nombre', apellido = '$apellido',fecha_nac='$fecha_nac',objetivo='$objetivo',direccion='$direccion',num_telf='$num_telf',localidad_id='$localidad_id',sexo_id='2', usuario_id='$id_usuario',foto='$foto'  WHERE usuario_id = '$id_usuario'"; 
                 $result_alumno_update= mysqli_query($conexion,$query_alumno_update);
                  //codigo foto
                  move_uploaded_file($_FILES['fotoE']['tmp_name'],'album/'.$foto);
