@@ -1,6 +1,15 @@
+<?php
+session_start();
+if ($_SESSION['rol']=='84'    ) {
+	
+?>
+
+
 <!DOCTYPE html>
 <html>
+<?php include("../login/menu.html"); ?>	
 <head>
+
 	<title>Roles</title>
 	<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
 	<script type="text/javascript" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
@@ -26,39 +35,14 @@
 
 	<script src="../validaciones/rol/validar-rol.js"></script>
 	<script type="text/javascript" src="../jq/rol.js"></script>
-
+	
 	<!-- fontawesone -->
 	<link rel="stylesheet" type="text/css" href="../librerias/fontawesome/fontawesome/css/all.min.css">
-
+	
 </head>
+
 <body>
-	<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
-		<a  class="navbar-brand" href="#">GIMNSOFT</a>
 
-		 <!-- Links -->
-		 <ul class="navbar-nav ">
-		 	<li class="navbar-item">
-		 		<a href="#" class="nav-link">e1</a>
-		 	</li>
-		 
-
-		  <!-- Dropdown -->
-		    <li class="nav-item dropdown">
-		      <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-		        Dropdown link
-		      </a>
-		      <div class="dropdown-menu">
-		        <a class="dropdown-item" href="#">Link 1</a>
-		        <a class="dropdown-item" href="#">Link 2</a>
-		        <a class="dropdown-item" href="#">Link 3</a>
-		      </div>
-		    </li>
-
-		    
-		 </ul>
-		
-
-	</nav>
 	<!-- tabla -->
 	
 	<div class="container my-4">
@@ -182,3 +166,9 @@
 	  
 </body>
 </html>
+<?php
+}else if($_SESSION['rol']==''){
+	echo'no';
+	die();
+}
+?>

@@ -1,3 +1,9 @@
+<?php
+session_start();
+if ($_SESSION['rol']=='84') {
+	
+?>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -405,3 +411,9 @@
 
 </script>  
 </html>
+<?php
+}else{
+	header('Location: ../login/index.html');
+	die();
+}
+?>

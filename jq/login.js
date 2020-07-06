@@ -1,21 +1,28 @@
 $(document).ready(function () {
+    
     $("#frmlogin").submit(function(e){
+        
         e.preventDefault();
 
-        ajax({
-            url:'',
+        $.ajax({
+            url:'../login/login.php',
             type:'POST',
-            dataType:'json',
+            
             data:$(this).serialize(),
-            beforenSend:function(){
-
+            
+            
+        
+        })
+        .done(function(respuesta) {
+            if (respuesta=='usuario') {
+                alert('usuario');
+                location.href ="../formularios/menu.php";
+            } else {
+                alert('administrador');
+                location.href ="../formularios/rol.php";
             }
-        })
-        .done(function(respuesta){
-            console.log(respuesta);
-        })
-        .fail(function(respuesta){
-            console.log(respuesta.responseText);
-        })
+           
+          })
+        
     });
 });
