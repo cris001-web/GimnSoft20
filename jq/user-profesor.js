@@ -89,3 +89,7 @@ $(document).ready(function(){
     });
     
 });
+//nuevo   
+$('#frmnuevoUA').submit(function(e){
+    alert('nuevo');
+}
