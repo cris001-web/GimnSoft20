@@ -70,6 +70,7 @@ if ($_SESSION['rol']=='84') {
             
         </table>
     </div>
+    <!-- tabla -->
     <!-- BODY MODALS -->
 				<!-- Modal nuevo -->
 	<div class="modal" tabindex="-1" role="dialog" id="modalNuevoUA" >

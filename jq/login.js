@@ -15,10 +15,10 @@ $(document).ready(function () {
         })
         .done(function(respuesta) {
             if (respuesta=='usuario') {
-                alert('usuario');
+                alertify.success(respuesta);
                 location.href ="../formularios/menu.php";
             } else {
-                alert('administrador');
+                
                 location.href ="../formularios/rol.php";
             }
            
