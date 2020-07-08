@@ -74,6 +74,155 @@ if ($_SESSION['rol']=='84') {
         </table>
     </div>
     <!-- tabla -->
+
+    <!-- BODY MODALS -->
+				<!-- Modal nuevo -->
+	<div class="modal" tabindex="-1" role="dialog" id="modalNuevoUA" >
+		<div class="modal-dialog modal-lg" role="document">
+		  <div class="modal-content">
+			<div class="head-new modal-header">
+			  <h5 class="modal-title "><i class="icon fas fa-user-plus"></i>Agregar un Nuevo Rol</h5>
+			  <button type="button" class="close" data-dismiss="modal" aria-label="Close" >
+				<span aria-hidden="true">&times;</span>
+			  </button>
+			</div>
+			<div class="modal-body">
+			    <form id="frmnuevoUA">
+                    <!--MENMSAJES  -->
+                    <div class='msj'></div>
+                    <div class='msj1'></div>
+                    <!--MENMSAJES  -->
+                    <div class="form-row">
+                        <div class="col-4">
+                        
+                          <label class="alias">Alias</label>  
+                          <input type="text" class="form-control" name="alias" placeholder="Alias" id="alias">
+                        </div> 
+                        <div class="col-4">
+                            <label class="contraseña">Contraseña</label>  
+                            <input type="text" class="form-control" placeholder="Contraseña" name="contraseña" id="contraseña">
+                        </div>
+                        <div class="col-4">
+                            <label class="foto">foto</label>  
+                            
+                                <input type="file" id="foto" name="foto" class=" btnFile btn btn-secondary"   ></input>
+                         
+                           
+                        </div>
+                        
+                    </div>
+                    <hr w-70>
+                     <div class="form-row">
+                        <div class="col-4">
+                            <label class="nombre">Nombre</label>  
+                            <input type="text" class="form-control" placeholder="Nombre" name="nombre" id="nombre" >
+                        </div>
+                        <div class="col-4">
+                            <label class="apellido">Apellido</label>  
+                            <input type="text" class="form-control" name="apellido"  placeholder="Apellido"  id="apellido">
+                        </div>
+                        <div class="col-4">
+                            <label class="fecha_nac">Fecha de Nacimiento</label>  
+                            <input type="date" class="form-control" placeholder="Fecha de Nacimiento" name="fecha_nac"  id="fecha_nac">
+                        </div>
+                    </div>
+					<div class="form-row">
+                        <div class="col-4">
+                            <label class="direccion">Dirección</label>  
+                            <input type="text" class="form-control" placeholder="Dirección" name="direccion"  id="direccion">
+                        </div>
+                        <div class="col-4">
+                            <label class="num_telf">N° de Telefono</label>  
+                            <input type="text" class="form-control" placeholder="N° de Telefono" name="num_telf" id="num_telf">
+                        </div>
+                        <div class="col-4">
+                            <label class="localidad">Localidad</label>
+                            <select class="custom-select mr-sm-2" name="select_loc" id="select_loc" >
+                                
+                                <?php
+                               
+                                    include('../database.php');
+                                    $query = "SELECT * FROM localidad";
+                                    $result =  mysqli_query($conexion,$query); 
+
+                                    while ($row = mysqli_fetch_array($result)) {
+                                        $id_localidad=$row['id_localidad'];
+                                        $descripcion_loc=$row['descripcion_loc'];
+                                ?>
+                                
+                                        <option value='<?php echo $id_localidad; ?>'><?php echo $descripcion_loc;?></option>
+                                <?php
+                                    }
+                                ?>
+                         
+
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-6">
+                            <label class="sexo">Sexo</label>
+                            <select class="custom-select mr-sm-2" name="select_sex" id="select_sex">
+                            <option value="" selected >Elegir Genero</option>
+                            <?php
+                              
+                               include('../database.php');
+                               $query = "SELECT * FROM sexo";
+                               $result =  mysqli_query($conexion,$query); 
+
+                               while ($row = mysqli_fetch_array($result)) {
+                                   $id_sexo=$row['id_sexo'];
+                                   $descripcion_sex=$row['descripcion_sex'];
+                           ?>
+                                   <option value='<?php echo $id_sexo; ?>'><?php echo $descripcion_sex;?></option>
+                           <?php
+                               }
+                           ?>
+                            </select>
+                        </div>
+                        <div class="col-6">
+                            <label class="rol">Rol</label>
+                            <select class="custom-select mr-sm-2" name="select_rol" id="select_rol">
+                            <option  value="" selected>Elegir Rol</option>
+                            <?php
+                               
+                               include('../database.php');
+                               $query = "SELECT * FROM rol";
+                               $result =  mysqli_query($conexion,$query); 
+
+                               while ($row = mysqli_fetch_array($result)) {
+                                   $id_rol=$row['id_rol'];
+                                   $descripcion=$row['descripcion'];
+                           ?>
+                                   <option value='<?php echo $id_rol; ?>'><?php echo $descripcion;?></option>
+                           <?php
+                               }
+                           ?>
+                            </select>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-12">
+                                <label class="objetivo">Objetivo</label>
+                                <textarea class="form-control" placeholder="Objetivo" name="objetivo" id="objetivo">
+
+                                </textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <!--MENMSAJES  -->
+                    <div class='msj'></div>
+                    <div class='msj1'></div>
+                    <!--MENMSAJES  -->
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+						<button type="submit" class="btn btn-primary" onclick="return validarUA();" >GUARDAR</button>
+					</div>
+				</form>
+			</div>
+					
+		  </div>
+		</div>
+    </div>
 </body>
 </html>
 <?php
