@@ -28,7 +28,7 @@ $(document).ready(function(){
                 return '<center><img src="'+url+"/"+data+'" width="120" height="80"/></center>';
                 }
             },
-            {"defaultContent":"<button type='button' class='borrar btn btn-danger ' data-toggle='modal' data-target='#modalBorrarUA'><i class='icon far fa-trash-alt'></i>Eliminar</button><button type='button' class='editar btn btn-warning ' data-toggle='modal' data-target='#modalEditarUP'><i class='icon fas fa-user-edit '></i>Editar</button>"},
+            {"defaultContent":"<button type='button' class='borrar btn btn-danger ' data-toggle='modal' data-target='#modalBorrarUP'><i class='icon far fa-trash-alt'></i>Eliminar</button><button type='button' class='editar btn btn-warning ' data-toggle='modal' data-target='#modalEditarUP'><i class='icon fas fa-user-edit '></i>Editar</button>"},
 
         ],
             "language":{
@@ -92,7 +92,7 @@ $(document).ready(function(){
         table.ajax.reload(null,false);
     },1000);
     editar("#dataTableUP tbody",table );
-
+    borrar("#dataTableUP tbody",table);
     $('#frmnuevoUP').submit(function(e){
         e.preventDefault();
        
@@ -155,14 +155,14 @@ $(document).ready(function(){
                console.log(respuesta);
                 if(respuesta=='SE EDITÓ CORRECTAMENTE'){
                  alertify.success('SE EDITÓ CORRECTAMENTE');
-                 $("#modalEditarUA").modal('hide');
+                 $("#modalEditarUP").modal('hide');
                 
                 }else if (respuesta=='YA EXISTE EL ALIAS, INTENTE CON OTRO!'){
                     alertify.error('YA EXISTE EL ALIAS, INTENTE CON OTRO!');
                 }else if (respuesta=='ERROR EN LA BASE DE DATOS'){
                     alertify.error('ERROR EN LA BASE DE DATOS');
                 }
-              $('#frmEditarUA').trigger('reset');
+              $('#frmEditarUP').trigger('reset');
                 return false;
             }
            
@@ -171,6 +171,25 @@ $(document).ready(function(){
         });
     });
     
+    $("#frmborrarUP").submit(function(e){
+        e.preventDefault();
+        const postData={
+            id_usuario:$('#id_usuarioB').val(),
+            id_profesor:$('#id_profesorB').val()
+        };
+        $.post('../phpUP/borrar-UP.php', postData,function(respuesta) {
+            console.log(respuesta);
+                if(respuesta=='ERROR EN LA BASE DE DATOS'){
+                    alertify.error(respuesta);
+                }else if(respuesta=='SE BORRO EXITOSAMENTE'){
+                    alertify.success('SE BORRÓ EXITOSAMENTE!');
+                    $("#modalBorrarUP").modal('hide');
+
+                }
+    
+            
+        });
+    });
 });
 
 var editar = function(tbody,table){
@@ -196,5 +215,15 @@ var editar = function(tbody,table){
         $('#select_sexE').append('<option value="'+Object.values([data.sexo_id])+'" selected="selected">'+Object.values([data.descripcion_sex])+'</option>'); 
         $('#select_rolE').append('<option value="'+Object.values([data.rol_id])+'" selected="selected">'+Object.values([data.descripcion])+'</option>');
     });
+}
+
+//borrar
+var borrar = function (tbody, table) {
+    $(tbody).on("click","button.borrar",function(){
+        var data=table.row($(this).parents("tr")).data();
+        $("#id_usuarioB").val(data.id_usuario);
+        $("#id_profesorB").val(data.id_profesor);
+    });
+    
 }
   

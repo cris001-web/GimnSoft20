@@ -359,12 +359,46 @@ if ($_SESSION['rol']=='84') {
 						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 						<button type="submit" class="btn btn-warning" >EDITAR</button>
 					</div>
+
+
 				</form>
 			</div>
 					
 		  </div>
 		</div>
     </div>
+
+        <!-- Modal Borrar -->
+	<div class="modal" tabindex="-1" role="dialog" id="modalBorrarUP">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+                <div class=" head-delete modal-header">
+                    <h5 class="modal-title "><i class='icon far fa-trash-alt'></i>Eliminar Usuario-Profesor</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" >
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                
+            </div>
+			<div class="modal-body">
+				<form id="frmborrarUP">
+					<div class="form-group">
+                        <input type="text" name="id_usuarioB" id="id_usuarioB"></input>
+                        <input type="text" name="id_profesorB" id="id_profesorB"></input>
+						<label class="descripcion">¿Seguro Que Deseas Eliminar el Registro?</label>
+							
+	
+					</div>
+						
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+						<button type="submit" class="btn btn-danger" >Eliminar</button>
+						</div>
+				</form>
+			</div>
+						
+		    </div>
+		</div>
+	</div>
 </body>
 </html>
 <?php
