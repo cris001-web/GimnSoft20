@@ -17,9 +17,13 @@ $(document).ready(function () {
             if (respuesta=='usuario') {
                 alertify.success(respuesta);
                 location.href ="../formularios/menu.php";
-            } else {
+            } else if(respuesta=='super administrador'){
                 
                 location.href ="../formularios/rol.php";
+            }else if(respuesta=='administrador'){
+                location.href ="../formularios/menu.php";
+            }else{
+                toastr["success"]("mensaje pru","titulo");
             }
            
           })

@@ -17,6 +17,10 @@ if($cant_row==1){
  $_SESSION['rol']  = $rol_id;
  if($rol_id=='87'){
     echo 'usuario';
+ }else if($rol_id=='84'){
+    echo 'administrador';
+ }else{
+     echo 'administrador';
  }
 }else {
     //echo "SELECT alias,rol_id,descripcion FROM usuario  INNER JOIN rol on rol_id=id_rol WHERE alias='$alias' and contraseña='$contraseña'";
