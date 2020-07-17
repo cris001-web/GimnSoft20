@@ -1,6 +1,6 @@
 <?php
 session_start();
-if ($_SESSION['rol']=='84') {
+if ($_SESSION['descripcion']=='Administrador' ||  $_SESSION['descripcion']=='Super Admin') {
 	
 ?>
 
@@ -9,36 +9,50 @@ if ($_SESSION['rol']=='84') {
     <head>
         <title>Usuario-Alumno</title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <script type="text/javascript" src="../librerias/bootstrap4/js/jquery-3.5.1.min.js"></script> 
-    <script src="../validaciones/validar-UA.js"></script>
-    <script type="text/javascript" src="../jq/user-alumno.js"></script>
-      
+        <!-- jquery -->    
+        <script type="text/javascript" src="../librerias/bootstrap4/js/jquery-3.5.1.min.js"></script> 
 
-       <!-- bootstrap js -->
-    
-    <script type="text/javascript"   src="../librerias/DataTables/jquery.dataTables.min.js"></script>
-    <script type="text/javascript"   src="../librerias/DataTables/dataTables.bootstrap4.min.js"></script>
-    <script type="text/javascript"   src="../librerias/bootstrap4/js/bootstrap.min.js"></script>
+        <script src="../validaciones/validar-UA.js"></script>
+        <script type="text/javascript" src="../jq/user-alumno.js"></script>
+        
+        <!-- datatable js -->
+        <script type="text/javascript"   src="../librerias/DataTables/jquery.dataTables.min.js"></script>
+        <script type="text/javascript"   src="../librerias/DataTables/dataTables.bootstrap4.min.js"></script>
+
+        <!-- alertify -->
+        <link rel="stylesheet" type="text/css" href="../librerias/alertifyjs/css/alertify.css">
+        <link rel="stylesheet" type="text/css" href="../librerias/alertifyjs/css/themes/default.css"> 
+        <script src="../librerias/alertifyjs/alertify.js"></script>
+
+        <!-- bootstrap js -->
+        <script type="text/javascript"   src="../librerias/bootstrap4/js/bootstrap.min.js"></script>
+
+       
+        <!-- bootstrap datatable css -->
+        <link rel="stylesheet" href="../librerias/DataTables/bootstrap.css"></link>
+        <link rel="stylesheet" href="../librerias/DataTables/dataTables.bootstrap4.min.css"></link>
 
         <!-- bootstrap css -->
-    <link rel="stylesheet" href="../librerias/bootstrap4/css/bootstrap.min.css"></link>
-    <link rel="stylesheet" href="../librerias/DataTables/bootstrap.css"></link>
-    <link rel="stylesheet" href="../librerias/DataTables/dataTables.bootstrap4.min.css"></link>
-    <!-- CSS -->
-    <link rel="stylesheet" href="../estilos/style-gral.css"></link>
+        <link rel="stylesheet" href="../librerias/bootstrap4/css/bootstrap.min.css"></link>
 
-     <!-- fontawesone -->
-    <link rel="stylesheet" type="text/css" href="../librerias/fontawesome/fontawesome/css/all.min.css"> 
-    
-    <!-- alertify -->
-	<link rel="stylesheet" type="text/css" href="../librerias/alertifyjs/css/alertify.css">
-	<link rel="stylesheet" type="text/css" href="../librerias/alertifyjs/css/themes/default.css"> 
-    <script src="../librerias/alertifyjs/alertify.js"></script>
+
+        <!-- CSS -->
+        <link rel="stylesheet" href="../estilos/style-gral.css"></link>
+        <link rel="stylesheet" type="text/css" href="../estilos/style_menu.css">
+
+        <!-- fontawesone -->
+        <link rel="stylesheet" type="text/css" href="../librerias/fontawesome/fontawesome/css/all.min.css"> 
+        
+        <!-- js -->
+        <script type="text/javascript"  src="../jq/menu.js"></script>
+        <script src="../validaciones/rol/validar-rol.js"></script>
+        <script type="text/javascript"  src="../jq/menu.js"></script>
+
     </head>
     <body>
            
-</html>
-<body>
+
+    <?php include_once('../login/menu.php'); ?>
     <!-- tabla -->
 	
 	<div class="container my-4">
