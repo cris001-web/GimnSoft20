@@ -1,6 +1,6 @@
 <?php
 session_start();
-if ($_SESSION['rol']=='84'    ) {
+if ($_SESSION['descripcion']=='Administrador' ||  $_SESSION['descripcion']=='Super Admin'  ) {
 	
 ?>
 
@@ -49,43 +49,7 @@ if ($_SESSION['rol']=='84'    ) {
 </head>
 
 <body>
-	<header>
-		<span id="button-menu" class="fa fa-bars" aria-hidden="true" ></span>
-		<nav class="navegacion">
-			<ul class="menu">
-				<li class="title-menu">Categorias</li>
-
-				<li><a href="#"><span class="fa fa-home icon-menu"></span>Inicio</a></li>
-
-				<li class="item-submenu" menu="1">
-					<a href="#"><span class="fa fa-plus icon-menu" ></span> Agregar</a>
-					<ul class="submenu" >
-						<li class="title-menu"><span class="fa fa-plus icon-menu" ></span> Agregar</li>
-						<li class="go-back">Atras</li>
-						<li><a href="http://localhost/gimnsoft/formularios/user-alumno.php">Cliente</a></li>
-						<li><a href="http://localhost/gimnsoftware/formulariosRoles/insert.php">Rol</a></li>
-						<li><a href="#">Actividad</a></li>
-					</ul>
-				</li>
-				
-				
-
-				
-
-				<li class="item-submenu" menu="2">
-					<a href="#"><span class="fa fa-plus icon-menu" ></span> Listar</a>
-					<ul class="submenu" >
-						<li class="title-menu"><span class="fa fa-plus icon-menu" ></span>Listar</li>
-						<li class="go-back">Atras</li>
-						<li><a href="http://localhost/gimnsoftware/formulariosUsuarios/listar_usuario.php">Cliente</a></li>
-						<li><a href="http://localhost/gimnsoftware/formulariosRoles/listar.php">Rol</a></li>
-						<li><a href="#">Actividad</a></li>
-					</ul>
-				</li>	
-				</li>
-			</ul>
-		</nav>
-	</header>
+	<?php include_once('../login/menu.php'); ?>
 	<!-- tabla -->
 	
 	<div class="container my-4">

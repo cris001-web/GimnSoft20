@@ -40,3 +40,16 @@ button, html [type="button"], [type="reset"], [type="submit"] {
     background: #ffc721;
     color: white;
 }
+.container{
+    position: relative;
+    top: 60px;
+    z-index: 0;
+}
+
+header{
+    z-index: 1;
+}
+.navbar{
+    padding: 0 0 0 0;
+    height: 25px;
+}
