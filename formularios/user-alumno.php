@@ -12,8 +12,7 @@ if ($_SESSION['descripcion']=='Administrador' ||  $_SESSION['descripcion']=='Sup
         <!-- jquery -->    
         <script type="text/javascript" src="../librerias/bootstrap4/js/jquery-3.5.1.min.js"></script> 
 
-        <script src="../validaciones/validar-UA.js"></script>
-        <script type="text/javascript" src="../jq/user-alumno.js"></script>
+       
         
         <!-- datatable js -->
         <script type="text/javascript"   src="../librerias/DataTables/jquery.dataTables.min.js"></script>
@@ -45,8 +44,10 @@ if ($_SESSION['descripcion']=='Administrador' ||  $_SESSION['descripcion']=='Sup
         
         <!-- js -->
         <script type="text/javascript"  src="../jq/menu.js"></script>
-        <script src="../validaciones/rol/validar-rol.js"></script>
-        <script type="text/javascript"  src="../jq/menu.js"></script>
+        
+        
+        <script src="../validaciones/validar-UA.js"></script>
+        <script type="text/javascript" src="../jq/user-alumno.js"></script>
 
     </head>
     <body>
@@ -422,9 +423,7 @@ if ($_SESSION['descripcion']=='Administrador' ||  $_SESSION['descripcion']=='Sup
 	</div>
 
 </body>
-<script type="text/javascript">
-
-</script>  
+ 
 </html>
 <?php
 }else{

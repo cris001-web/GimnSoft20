@@ -21,7 +21,7 @@ $(document).ready(function () {
                         
                     location.href ="../formularios/rol.php";
                 }else if(data.descripcion=='Administrador'){
-                    location.href ="../formularios/rol.php";
+                    location.href ="../vistas/menu-gral.php";
                 }else if(data.resp=='incorrecto')  {
                     toastr["error"]("ALIAS y/o CONTRASEÑA Incorrecta","ERROR");
                 }

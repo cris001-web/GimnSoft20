@@ -1,0 +1,22 @@
+.imgCard{
+    margin: auto;
+   width: 100px;
+}
+.card{
+    border: none;
+}
+.dropdown{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+.enlace{
+    color:#571501;
+}
+.enlace:hover{
+    color:#571501;
+}
+.dropdown-item:hover, .dropdown-item:focus{
+    text-decoration: none;
+    background-color: #aeaeaebf;
+}

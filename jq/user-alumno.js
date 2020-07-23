@@ -22,10 +22,10 @@ $(document).ready(function () {
                     "data":"foto",
                     "render":function(data,type,row){
                          var url = "../phpUA/album/";
-                        return '<center><img src="'+url+"/"+data+'" width="120" height="80"/></center>';
+                        return '<center><img src="'+url+"/"+data+'" width="70px" height="70px" /></center>';
                     }
                 },
-                {"defaultContent":"<button type='button' class='borrar btn btn-danger ' data-toggle='modal' data-target='#modalBorrarUA'><i class='icon far fa-trash-alt'></i>Eliminar</button><button type='button' class='editar btn btn-warning ' data-toggle='modal' data-target='#modalEditarUA'><i class='icon fas fa-user-edit '></i>Editar</button>"},
+                {"defaultContent":"<button type='button' class='borrar btn btn-danger mb-2 ' data-toggle='modal' data-target='#modalBorrarUA'><i class='icon far fa-trash-alt'></i>Eliminar</button><button type='button' class='editar btn btn-warning ' data-toggle='modal' data-target='#modalEditarUA'><i class='icon fas fa-user-edit '></i>Editar</button>"},
                 ],
                 "language":{
                     "sProcessing":     "Procesando...",
@@ -75,9 +75,9 @@ $(document).ready(function () {
     });
 
     //recarga pagina
-	setInterval(function(){
-        table.ajax.reload(null,false);
-    },1000);
+	// setInterval(function(){
+    //     table.ajax.reload(null,false);
+    // },1000);
 
     editar("#dataTableUA tbody", table);
     borrar("#dataTableUA tbody", table);
