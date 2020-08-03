@@ -1,6 +1,6 @@
 <?php
 session_start();
-if ($_SESSION['rol']=='84') {
+if ($_SESSION['descripcion']=='Administrador' ||  $_SESSION['descripcion']=='Super Administrador' ) {
 	
 ?>
 <!DOCTYPE html>
@@ -8,38 +8,50 @@ if ($_SESSION['rol']=='84') {
     <head>
         <title>Usuario-Alumno</title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <!-- js -->    
-    <script type="text/javascript" src="../librerias/bootstrap4/js/jquery-3.5.1.min.js"></script> 
-    <script src="../validaciones/validar-UA.js"></script>
-    <script type="text/javascript" src="../jq/user-profesor.js"></script>
-      
-
-       <!-- bootstrap js -->
+     <!-- jquery -->    
+     <script type="text/javascript" src="../librerias/bootstrap4/js/jquery-3.5.1.min.js"></script> 
     
+     <!-- datatable js -->
     <script type="text/javascript"   src="../librerias/DataTables/jquery.dataTables.min.js"></script>
     <script type="text/javascript"   src="../librerias/DataTables/dataTables.bootstrap4.min.js"></script>
+
+    
+
+    <!-- alertify -->
+    <link rel="stylesheet" type="text/css" href="../librerias/alertifyjs/css/alertify.css">
+    <link rel="stylesheet" type="text/css" href="../librerias/alertifyjs/css/themes/default.css"> 
+    <script src="../librerias/alertifyjs/alertify.js"></script>
+
+    <!-- bootstrap js -->
     <script type="text/javascript"   src="../librerias/bootstrap4/js/bootstrap.min.js"></script>
 
-        <!-- bootstrap css -->
-    <link rel="stylesheet" href="../librerias/bootstrap4/css/bootstrap.min.css"></link>
+
+    <!-- bootstrap datatable css -->
     <link rel="stylesheet" href="../librerias/DataTables/bootstrap.css"></link>
     <link rel="stylesheet" href="../librerias/DataTables/dataTables.bootstrap4.min.css"></link>
+
+    <!-- bootstrap css -->
+    <link rel="stylesheet" href="../librerias/bootstrap4/css/bootstrap.min.css"></link>
+
+
     <!-- CSS -->
     <link rel="stylesheet" href="../estilos/style-gral.css"></link>
+    <link rel="stylesheet" type="text/css" href="../estilos/style_menu.css">
 
-       <!-- fontawesone -->
+    <!-- fontawesone -->
     <link rel="stylesheet" type="text/css" href="../librerias/fontawesome/fontawesome/css/all.min.css"> 
-    
-      <!-- alertify -->
-	<link rel="stylesheet" type="text/css" href="../librerias/alertifyjs/css/alertify.css">
-	<link rel="stylesheet" type="text/css" href="../librerias/alertifyjs/css/themes/default.css"> 
-    <script src="../librerias/alertifyjs/alertify.js"></script>
+    <!-- js -->
+    <script type="text/javascript"  src="../jq/menu.js"></script>
+        
+        
+    <script src="../validaciones/validar-UP.js"></script>
+    <script type="text/javascript" src="../jq/user-profesor.js"></script>
     </head>
     <body>
            
 </html>
 <body>
-
+<?php include_once('../login/menu.php'); ?>
     <!-- tabla -->
 	
 	<div class="container my-4">
@@ -89,8 +101,15 @@ if ($_SESSION['rol']=='84') {
 			<div class="modal-body">
 			    <form id="frmnuevoUP">
                     <!--MENMSAJES  -->
-                    <div class='msj'></div>
-                    <div class='msj1'></div>
+                    <div  class='msj 'style="display:none;">
+                        <span style="color: red;">EL CAMPO ESTA VACÍO</span>
+                    </div>
+                    <div class='msj1' style="display:none;">
+                        <span style="color: red;">NO SE PERMITEN NÚMEROS</span> 
+                    </div>
+                    <div class='msj2' style="display:none;">
+                        <span style="color: red;">NO SE PERMITEN LETRAS</span> 
+                    </div>
                     <!--MENMSAJES  -->
                     <div class="form-row">
                         <div class="col-4">
@@ -133,7 +152,7 @@ if ($_SESSION['rol']=='84') {
                         </div>
                         <div class="col-4">
                             <label class="num_telf">N° de Telefono</label>  
-                            <input type="text" class="form-control" placeholder="N° de Telefono" name="num_telef" id="num_telef">
+                            <input type="text" class="form-control" placeholder="N° de Telefono" name="num_telf" id="num_telf">
                         </div>
                         <div class="col-4">
                             <label class="localidad">Localidad</label>
@@ -202,13 +221,10 @@ if ($_SESSION['rol']=='84') {
                         </div>
                         
                     </div>
-                    <!--MENMSAJES  -->
-                    <div class='msj'></div>
-                    <div class='msj1'></div>
-                    <!--MENMSAJES  -->
+                    
 					<div class="modal-footer">
 						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-						<button type="submit" class="btn btn-primary"  >GUARDAR</button>
+						<button type="submit" class="btn btn-primary" onclick="return validarUP();" >GUARDAR</button>
 					</div>
 				</form>
 			</div>
@@ -231,8 +247,15 @@ if ($_SESSION['rol']=='84') {
 			<div class="modal-body">
 			    <form id="frmEditarUP">
                     <!--MENMSAJES  -->
-                    <div class='msj'></div>
-                    <div class='msj1'></div>
+                    <div  class='msj 'style="display:none;">
+                        <span style="color: red;">EL CAMPO ESTA VACÍO</span>
+                    </div>
+                    <div class='msj1' style="display:none;">
+                        <span style="color: red;">NO SE PERMITEN NÚMEROS</span> 
+                    </div>
+                    <div class='msj2' style="display:none;">
+                        <span style="color: red;">NO SE PERMITEN LETRAS</span> 
+                    </div>
                     <!--MENMSAJES  -->
                     <div class="form-row">
 
@@ -278,13 +301,13 @@ if ($_SESSION['rol']=='84') {
                         </div>
                         <div class="col-4">
                             <label class="num_telf">N° de Telefono</label>  
-                            <input type="text" class="form-control" placeholder="N° de Telefono" name="num_telefE" id="num_telefE">
+                            <input type="text" class="form-control" placeholder="N° de Telefono" name="num_telfE" id="num_telfE">
                         </div>
                         <div class="col-4">
                             <label class="localidad">Localidad</label>
                             
                             <select class="custom-select mr-sm-2" name="select_locE" id="select_locE" >
-                            <option value="" selected>Elegir Localidad</option>
+                            
                           
                             
                                 <?php
@@ -310,7 +333,7 @@ if ($_SESSION['rol']=='84') {
                         <div class="col-6">
                             <label class="sexo">Sexo</label>
                             <select class="custom-select mr-sm-2" name="select_sexE" id="select_sexE">
-                            <option value="" selected >Elegir Genero</option>
+                           
                             
                             <?php
                               
@@ -332,7 +355,7 @@ if ($_SESSION['rol']=='84') {
                             <label class="rol">Rol</label>
                             <select class="custom-select mr-sm-2" name="select_rolE" id="select_rolE">
                             
-                            <option  value="" id="select_rolE" selected>Elegir Rol</option>
+                            
                             <?php
                                
                                include('../database.php');
@@ -351,13 +374,10 @@ if ($_SESSION['rol']=='84') {
                         </div>
                         
                     </div>
-                    <!--MENMSAJES  -->
-                    <div class='msj'></div>
-                    <div class='msj1'></div>
-                    <!--MENMSAJES  -->
+                   
 					<div class="modal-footer">
 						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-						<button type="submit" class="btn btn-warning" >EDITAR</button>
+						<button type="submit" class="btn btn-warning" onclick="return validarUPedit();">EDITAR</button>
 					</div>
 
 
@@ -382,8 +402,8 @@ if ($_SESSION['rol']=='84') {
 			<div class="modal-body">
 				<form id="frmborrarUP">
 					<div class="form-group">
-                        <input type="text" name="id_usuarioB" id="id_usuarioB"></input>
-                        <input type="text" name="id_profesorB" id="id_profesorB"></input>
+                        <input type="hidden" name="id_usuarioB" id="id_usuarioB"></input>
+                        <input type="hidden" name="id_profesorB" id="id_profesorB"></input>
 						<label class="descripcion">¿Seguro Que Deseas Eliminar el Registro?</label>
 							
 	

@@ -1,6 +1,6 @@
 <?php
 session_start();
-if ($_SESSION['descripcion']=='Administrador' ||  $_SESSION['descripcion']=='Super Admin') {
+if ($_SESSION['descripcion']=='Administrador' ||  $_SESSION['descripcion']=='Super Administrador') {
 	
 ?>
 
@@ -17,6 +17,7 @@ if ($_SESSION['descripcion']=='Administrador' ||  $_SESSION['descripcion']=='Sup
         <!-- datatable js -->
         <script type="text/javascript"   src="../librerias/DataTables/jquery.dataTables.min.js"></script>
         <script type="text/javascript"   src="../librerias/DataTables/dataTables.bootstrap4.min.js"></script>
+        
 
         <!-- alertify -->
         <link rel="stylesheet" type="text/css" href="../librerias/alertifyjs/css/alertify.css">
@@ -34,6 +35,7 @@ if ($_SESSION['descripcion']=='Administrador' ||  $_SESSION['descripcion']=='Sup
         <!-- bootstrap css -->
         <link rel="stylesheet" href="../librerias/bootstrap4/css/bootstrap.min.css"></link>
 
+        
 
         <!-- CSS -->
         <link rel="stylesheet" href="../estilos/style-gral.css"></link>
@@ -50,6 +52,9 @@ if ($_SESSION['descripcion']=='Administrador' ||  $_SESSION['descripcion']=='Sup
         <script type="text/javascript" src="../jq/user-alumno.js"></script>
 
     </head>
+    <style>
+       
+    </style>
     <body>
            
 
@@ -100,8 +105,15 @@ if ($_SESSION['descripcion']=='Administrador' ||  $_SESSION['descripcion']=='Sup
 			<div class="modal-body">
 			    <form id="frmnuevoUA">
                     <!--MENMSAJES  -->
-                    <div class='msj'></div>
-                    <div class='msj1'></div>
+                    <div  class='msj 'style="display:none;">
+                        <span style="color: red;">EL CAMPO ESTA VACÍO</span>
+                    </div>
+                    <div class='msj1' style="display:none;">
+                        <span style="color: red;">NO SE PERMITEN NÚMEROS</span> 
+                    </div>
+                    <div class='msj2' style="display:none;">
+                        <span style="color: red;">NO SE PERMITEN NÚMEROS</span> 
+                    </div>
                     <!--MENMSAJES  -->
                     <div class="form-row">
                         <div class="col-4">
@@ -115,10 +127,7 @@ if ($_SESSION['descripcion']=='Administrador' ||  $_SESSION['descripcion']=='Sup
                         </div>
                         <div class="col-4">
                             <label class="foto">foto</label>  
-                            
-                                <input type="file" id="foto" name="foto" class=" btnFile btn btn-secondary"   ></input>
-                         
-                           
+                            <input type="file" id="foto" name="foto" class=" btnFile btn btn-secondary"></input>
                         </div>
                         
                     </div>
@@ -194,21 +203,21 @@ if ($_SESSION['descripcion']=='Administrador' ||  $_SESSION['descripcion']=='Sup
                         <div class="col-6">
                             <label class="rol">Rol</label>
                             <select class="custom-select mr-sm-2" name="select_rol" id="select_rol">
-                            <option  value="" selected>Elegir Rol</option>
-                            <?php
-                               
-                               include('../database.php');
-                               $query = "SELECT * FROM rol";
-                               $result =  mysqli_query($conexion,$query); 
+                                <option  value="" selected>Elegir Rol</option>
+                                <?php
+                                
+                                include('../database.php');
+                                $query = "SELECT * FROM rol";
+                                $result =  mysqli_query($conexion,$query); 
 
-                               while ($row = mysqli_fetch_array($result)) {
-                                   $id_rol=$row['id_rol'];
-                                   $descripcion=$row['descripcion'];
-                           ?>
-                                   <option value='<?php echo $id_rol; ?>'><?php echo $descripcion;?></option>
-                           <?php
-                               }
-                           ?>
+                                while ($row = mysqli_fetch_array($result)) {
+                                    $id_rol=$row['id_rol'];
+                                    $descripcion=$row['descripcion'];
+                                ?>
+                                    <option value='<?php echo $id_rol; ?>'><?php echo $descripcion;?></option>
+                                <?php
+                                }
+                                ?>
                             </select>
                         </div>
                         <div class="form-row">
@@ -220,10 +229,7 @@ if ($_SESSION['descripcion']=='Administrador' ||  $_SESSION['descripcion']=='Sup
                             </div>
                         </div>
                     </div>
-                    <!--MENMSAJES  -->
-                    <div class='msj'></div>
-                    <div class='msj1'></div>
-                    <!--MENMSAJES  -->
+                    
 					<div class="modal-footer">
 						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 						<button type="submit" class="btn btn-primary" onclick="return validarUA();" >GUARDAR</button>
@@ -248,9 +254,17 @@ if ($_SESSION['descripcion']=='Administrador' ||  $_SESSION['descripcion']=='Sup
 			<div class="modal-body">
 			    <form id="frmEditarUA">
                     <!--MENMSAJES  -->
-                    <div class='msj'></div>
-                    <div class='msj1'></div>
+                    <div  class='msj 'style="display:none;">
+                        <span style="color: red;">EL CAMPO ESTA VACÍO</span>
+                    </div>
+                    <div class='msj1' style="display:none;">
+                        <span style="color: red;">NO SE PERMITEN NÚMEROS</span> 
+                    </div>
+                    <div class='msj2' style="display:none;">
+                        <span style="color: red;">NO SE PERMITEN LETRAS</span> 
+                    </div>
                     <!--MENMSAJES  -->
+                    
                     <div class="form-row">
 
                         <input type="hidden" name="id_usuarioE" id="id_usuarioE">
@@ -268,8 +282,8 @@ if ($_SESSION['descripcion']=='Administrador' ||  $_SESSION['descripcion']=='Sup
                         </div>
                         <div class="col-4">
                             <label class="foto">foto</label>  
-                            
-                                <input type="file" id="fotoE" name="fotoE" class=" btnFile btn btn-secondary"></input>
+                            <div id="img"></div>
+                            <input type="file" id="fotoE" name="fotoE" class=" btnFile btn btn-secondary"></input>
                         </div>
                         
                     </div>
@@ -301,7 +315,7 @@ if ($_SESSION['descripcion']=='Administrador' ||  $_SESSION['descripcion']=='Sup
                             <label class="localidad">Localidad</label>
                             
                             <select class="custom-select mr-sm-2" name="select_locE" id="select_locE" >
-                            <option value="" selected>Elegir Localidad</option>
+                            
                           
                             
                                 <?php
@@ -327,7 +341,7 @@ if ($_SESSION['descripcion']=='Administrador' ||  $_SESSION['descripcion']=='Sup
                         <div class="col-6">
                             <label class="sexo">Sexo</label>
                             <select class="custom-select mr-sm-2" name="select_sexE" id="select_sexE">
-                            <option value="" selected >Elegir Genero</option>
+                            
                             
                             <?php
                               
@@ -339,17 +353,19 @@ if ($_SESSION['descripcion']=='Administrador' ||  $_SESSION['descripcion']=='Sup
                                    $id_sexo=$row['id_sexo'];
                                    $descripcion_sex=$row['descripcion_sex'];
                            ?>
-                                   <option value='<?php echo $id_sexo; ?>'><?php echo $descripcion_sex;?></option>
+                                <option   value='<?php echo $id_sexo; ?>'><?php echo $descripcion_sex;?></option>
                            <?php
                                }
+
                            ?>
+                            
                             </select>
                         </div>
                         <div class="col-6">
                             <label class="rol">Rol</label>
                             <select class="custom-select mr-sm-2" name="select_rolE" id="select_rolE">
                             
-                            <option  value="" id="select_rolE" selected>Elegir Rol</option>
+                            
                             <?php
                                
                                include('../database.php');
@@ -375,13 +391,10 @@ if ($_SESSION['descripcion']=='Administrador' ||  $_SESSION['descripcion']=='Sup
                             </div>
                         </div>
                     </div>
-                    <!--MENMSAJES  -->
-                    <div class='msj'></div>
-                    <div class='msj1'></div>
-                    <!--MENMSAJES  -->
+                    
 					<div class="modal-footer">
 						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-						<button type="submit" class="btn btn-warning" >EDITAR</button>
+                        <button type="submit" class="btn btn-warning"  onclick="return validarUAedit();" >EDITAR</button>
 					</div>
 				</form>
 			</div>
@@ -403,6 +416,7 @@ if ($_SESSION['descripcion']=='Administrador' ||  $_SESSION['descripcion']=='Sup
             </div>
 			<div class="modal-body">
 				<form id="frmborrarUA">
+                    
 					<div class="form-group">
                         <input type="hidden" name="id_usuarioB" id="id_usuarioB"></input>
                         <input type="hidden" name="id_alumnoB" id="id_alumnoB"></input>

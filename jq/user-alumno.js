@@ -1,7 +1,28 @@
 $(document).ready(function () {
- 
+    // agrega un input para cada columna
+    $('#dataTableUA thead tr ').clone(true).appendTo( '#dataTableUA thead' );
+    $('#dataTableUA thead tr:eq(1) th').each( function (i) {
+		var title = $(this).text();
+		if (i==12) {
+			
+			$(this).html( '<input type="text" placeholder=" Buscar " style="display:none;" />' );
+		} else {
+			$(this).html( '<input type="text" placeholder=" Buscar " />' );	
+		}
+        
+		//hacemos consulta
+        $( 'input', this ).on( 'keyup change', function () {
+            if ( table.column(i).search() !== this.value ) {
+                table
+                    .column(i)
+                    .search( this.value )
+                    .draw();
+            }
+        } );
+    });
     var table =$('#dataTableUA').DataTable({
-    	
+    	orderCellsTop: true,
+		fixedHeader: true,
 		"ajax":{
 			"url":"../phpUA/listar.php",
             "dataSrc":"",
@@ -75,16 +96,16 @@ $(document).ready(function () {
     });
 
     //recarga pagina
-	// setInterval(function(){
-    //     table.ajax.reload(null,false);
-    // },1000);
+	setInterval(function(){
+        table.ajax.reload(null,false);
+    },1000);
 
     editar("#dataTableUA tbody", table);
     borrar("#dataTableUA tbody", table);
  
 
     //nuevo   
-     $('#frmnuevoUA').submit(function(e){ 
+    $('#frmnuevoUA').submit(function(e){ 
 
         
                var formulario = $('#frmnuevoUA');
@@ -109,25 +130,21 @@ $(document).ready(function () {
                     success:function(respuesta){
                        console.log(respuesta);
                        if(respuesta=='SE REGISTRO CORRECTAMENTE'){
-                        alertify.success('SE REGISTRO CORRECTAMENTE');
-                        $("#modalNuevoUA").modal('hide');
-                      }else if (respuesta=='YA EXISTE ESTA DESCRIPCIÓN, INTENTE CON OTRA!'){
-                        alertify.error('YA EXISTE ESTA DESCRIPCIÓN, INTENTE CON OTRA!');
-                      }else if (respuesta=='ERROR EN LA BASE DE DATOS'){
-                        alertify.error('ERROR EN LA BASE DE DATOS');
+                        alertify.success('SE REGISTRÓ CORRECTAMENTE')
 
-                      }
-                      $('#frmnuevoUA').trigger('reset');
+                        $("#modalNuevoUA").modal('hide');
+                       }else if (respuesta=='YA EXISTE ESTE ALIAS, INTENTE CON OTRO!'){
+                        alertify.error('¡YA EXISTE ESTE ALIAS, INTENTE CON OTRO!')
+                        
+                       }else if (respuesta=='ERROR EN LA BASE DE DATOS'){
+                        alertify.warning('ERROR EN LA BASE DE DATOS');
+
+                       }
+                       //$('#frmnuevoUA').trigger('reset');
                         return false;
                     }
-                   
-                    
-                
                 });
                 return false;
-          
-        
-        
     });
 
             //editar post
@@ -156,14 +173,14 @@ $(document).ready(function () {
                        console.log(respuesta);
                         if(respuesta=='SE EDITÓ CORRECTAMENTE'){
                          alertify.success('SE EDITÓ CORRECTAMENTE');
-                         $("#modalEditarUA").modal('hide');
+                         //$("#modalEditarUA").modal('hide');
                         
                         }else if (respuesta=='YA EXISTE EL ALIAS, INTENTE CON OTRO!'){
                             alertify.error('YA EXISTE EL ALIAS, INTENTE CON OTRO!');
                         }else if (respuesta=='ERROR EN LA BASE DE DATOS'){
                             alertify.error('ERROR EN LA BASE DE DATOS');
                         }
-                      $('#frmEditarUA').trigger('reset');
+                      //$('#frmEditarUA').trigger('reset');
                         return false;
                     }
                    
@@ -203,6 +220,8 @@ $(document).ready(function () {
  var editar = function(tbody,table){
     $(tbody).on("click","button.editar",function(){
         var data = table.row($(this).parents("tr")).data();
+        console.log(data);
+        
         $("#id_usuarioE").val(data.id_usuario);
         $("#aliasE").val(data.alias);
         $("#contraseñaE").val(data.contraseña);
@@ -211,14 +230,11 @@ $(document).ready(function () {
         $("#fecha_nacE").val(data.fecha_nac);
         $("#direccionE").val(data.direccion);
         $("#num_telfE").val(data.num_telf);
-        $("#select_locE").val(data.descripcion_loc);
-        $("#select_locE").val(data.localidad_id);
-        $("#select_sexE").val(data.descripcion_sex);
-        $("#select_sexE").val(data.sexo_id);
-        $("#select_rolE").val(data.rol_id);
+        
+        
         $("#select_locE").val(data.descripcion);
         $("#objetivoE").val(data.objetivo);
-
+        $('#img').html('<img src="../phpUA/album/'+Object.values([data.foto])+'" width="70px" height="70px" />');
         
         $('#select_locE').append('<option value="'+Object.values([data.localidad_id])+'" selected="selected">'+Object.values([data.descripcion_loc])+'</option>'); 
         $('#select_sexE').append('<option value="'+Object.values([data.sex_id])+'" selected="selected">'+Object.values([data.descripcion_sex])+'</option>'); 
@@ -248,3 +264,4 @@ function mostrarPassword(){
         $('.icon').removeClass('fa fa-eye').addClass('fa fa-eye-slash');
     }
 } 
+

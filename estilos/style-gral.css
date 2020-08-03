@@ -53,3 +53,7 @@ header{
     padding: 0 0 0 0;
     height: 25px;
 }
+/* filtro de columna input */
+thead input {
+    width: 100%;
+}

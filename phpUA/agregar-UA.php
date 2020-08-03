@@ -68,8 +68,6 @@ $foto_pre=$_FILES['foto'];
             echo 'ERROR DE BASE DE DATOS' ;
         }
     }else{
-        echo 'YA EXISTE ESTA DESCRIPCIÓN, INTENTE CON OTRA!';
+        echo 'YA EXISTE ESTE ALIAS, INTENTE CON OTRO!';
     }
-    
-
 ?>

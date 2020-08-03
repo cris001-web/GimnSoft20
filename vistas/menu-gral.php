@@ -1,6 +1,6 @@
 <?php
 session_start();
-if ($_SESSION['descripcion']=='Administrador' ||  $_SESSION['descripcion']=='Super Admin'  ) {
+if ($_SESSION['descripcion']=='Administrador' ||  $_SESSION['descripcion']=='Super Administrador'  ) {
 	
 ?>
 <!DOCTYPE html>

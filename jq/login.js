@@ -9,6 +9,8 @@ $(document).ready(function () {
             type:'POST',
             
             data:$(this).serialize(),
+            
+
             success:function(respuesta){
                 console.log(respuesta);
                 let datas= JSON.parse(respuesta);
@@ -19,7 +21,7 @@ $(document).ready(function () {
                     location.href ="../formularios/menu.php";
                 } else if(data.descripcion=='Super Administrador'){
                         
-                    location.href ="../formularios/rol.php";
+                    location.href ="../vistas/menu-gral.php";
                 }else if(data.descripcion=='Administrador'){
                     location.href ="../vistas/menu-gral.php";
                 }else if(data.resp=='incorrecto')  {

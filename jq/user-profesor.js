@@ -1,6 +1,30 @@
 $(document).ready(function(){
-    
+
+    // agrega un input para cada columna
+    $('#dataTableUP thead tr ').clone(true).appendTo( '#dataTableUP thead' );
+    $('#dataTableUP thead tr:eq(1) th').each( function (i) {
+		var title = $(this).text();
+		if (i==14) {
+			
+			$(this).html( '<input type="text" placeholder=" Buscar " style="display:none;" />' );
+		} else {
+			$(this).html( '<input type="text" placeholder=" Buscar " />' );	
+		}
+        
+		//hacemos consulta
+        $( 'input', this ).on( 'keyup change', function () {
+            if ( table.column(i).search() !== this.value ) {
+                table
+                    .column(i)
+                    .search( this.value )
+                    .draw();
+            }
+        } );
+    } );
+
     var table =$('#dataTableUP').DataTable({
+        orderCellsTop: true,
+		fixedHeader: true,
         "ajax":{
             "url":"../phpUP/listar.php",
             "dataSrc":"",
@@ -25,10 +49,10 @@ $(document).ready(function(){
             "data":"foto",
             "render":function(data,type,row){
                 var url = "../phpUA/album/";
-                return '<center><img src="'+url+"/"+data+'" width="120" height="80"/></center>';
+                return '<center><img src="'+url+"/"+data+'" width="70px" height="70px"/></center>';
                 }
             },
-            {"defaultContent":"<button type='button' class='borrar btn btn-danger ' data-toggle='modal' data-target='#modalBorrarUP'><i class='icon far fa-trash-alt'></i>Eliminar</button><button type='button' class='editar btn btn-warning ' data-toggle='modal' data-target='#modalEditarUP'><i class='icon fas fa-user-edit '></i>Editar</button>"},
+            {"defaultContent":"<button type='button' class='borrar btn btn-danger mb-2 ' data-toggle='modal' data-target='#modalBorrarUP'><i class='icon far fa-trash-alt'></i>Eliminar</button><button type='button' class='editar btn btn-warning ' data-toggle='modal' data-target='#modalEditarUP'><i class='icon fas fa-user-edit '></i>Editar</button>"},
 
         ],
             "language":{
@@ -204,12 +228,12 @@ var editar = function(tbody,table){
         $("#fecha_nacE").val(data.fecha_nac);
         $("#direccionE").val(data.direccion);
         $("#num_telefE").val(data.num_telef);
-        $("#select_locE").val(data.descripcion_loc);
-        $("#select_locE").val(data.localidad_id);
-        $("#select_sexE").val(data.descripcion_sex);
-        $("#select_sexE").val(data.sexo_id);
-        $("#select_rolE").val(data.rol_id);
-        $("#select_locE").val(data.descripcion);
+        //$("#select_locE").val(data.descripcion_loc);
+        //$("#select_locE").val(data.localidad_id);
+        //$("#select_sexE").val(data.descripcion_sex);
+        //$("#select_sexE").val(data.sexo_id);
+        //$("#select_rolE").val(data.rol_id);
+        //$("#select_locE").val(data.descripcion);
         
         $('#select_locE').append('<option value="'+Object.values([data.localidad_id])+'" selected="selected">'+Object.values([data.descripcion_loc])+'</option>'); 
         $('#select_sexE').append('<option value="'+Object.values([data.sexo_id])+'" selected="selected">'+Object.values([data.descripcion_sex])+'</option>'); 

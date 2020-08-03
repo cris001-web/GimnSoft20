@@ -1,14 +1,13 @@
-function validarUA(){
+function validarUP(){
     var alias =$('#alias').val();
     var contraseña =$('#contraseña').val();
     var nombre =$('#nombre').val();
     var apellido =$('#apellido').val();
     var direccion =$('#direccion').val();
     var num_telf =$('#num_telf').val();
-    var select_loc =$('#select_loc option:selected').val();
-    var select_sex =$('#select_sex option:selected').val();
-    var select_rol =$('#select_rol option:selected').val();
-    var objetivo =$('#objetivo').val();
+    var select_loc=$('#select_loc option:selected').val();
+    var select_sex=$('#select_sex option:selected').val();
+    var select_rol=$('#select_rol option:selected').val();
     var fecha_nac =$('#fecha_nac').val();
     var foto =$('#foto').val();
     pattern=/^[A-zA-Z ]*$/;
@@ -154,21 +153,10 @@ function validarUA(){
         return false;
     }
 
-    if(objetivo=='\n'>0){
-        setTimeout(function(){
-            $('#objetivo'  ).css({ border: "1px solid #dd5144" });
-        },0000);
-        setTimeout(function(){
-            $('#objetivo'  ).css({ border: "1px solid #ced4da"});
-        },3000);
-        mostrarMsjVacio(); 
-        return false;
-    }
-
 }
 
 
-function validarUAedit(){
+function validarUPedit(){
     var aliasE =$('#aliasE').val();
     var contraseñaE =$('#contraseñaE').val();
     var nombreE =$('#nombreE').val();
@@ -176,7 +164,7 @@ function validarUAedit(){
     var direccionE =$('#direccionE').val();
     var num_telfE =$('#num_telfE').val();
     
-    var objetivoE =$('#objetivoE').val();
+    
     var fecha_nacE =$('#fecha_nacE').val();
     var foto =$('#foto').val();
     pattern=/^[A-zA-Z ]*$/;
@@ -292,18 +280,6 @@ function validarUAedit(){
         return false; 
     }
 
-    
-
-    if(objetivoE=='\n'>0){
-        setTimeout(function(){
-            $('#objetivoE'  ).css({ border: "1px solid #dd5144" });
-        },0000);
-        setTimeout(function(){
-            $('#objetivoE'  ).css({ border: "1px solid #ced4da"});
-        },3000);
-        mostrarMsjVacio(); 
-        return false;
-    }
     
    
 

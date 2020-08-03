@@ -1,8 +1,31 @@
  
 $(document).ready(function () {
+	// agrega un input para cada columna
+    $('#dataTabler thead tr ').clone(true).appendTo( '#dataTabler thead' );
+    $('#dataTabler thead tr:eq(1) th').each( function (i) {
+		var title = $(this).text();
+		if (i==2) {
+			
+			$(this).html( '<input type="text" placeholder=" Buscar " style="display:none;" />' );
+		} else {
+			$(this).html( '<input type="text" placeholder=" Buscar " />' );	
+		}
+        
+		//hacemos consulta
+        $( 'input', this ).on( 'keyup change', function () {
+            if ( table.column(i).search() !== this.value ) {
+                table
+                    .column(i)
+                    .search( this.value )
+                    .draw();
+            }
+        } );
+    } );
+
 	//datable
 	var table =$('#dataTabler').DataTable({
-    	
+		orderCellsTop: true,
+		fixedHeader: true,
 		"ajax":{
 			"url":"../php/listarRol.php",
 			"dataSrc":""
@@ -11,8 +34,8 @@ $(document).ready(function () {
 		{"data":"id_rol"},
 		{"data":"descripcion"},
 		{"defaultContent":"<button type='button' class='borrar btn btn-danger ' data-toggle='modal' data-target='#modalBorrar'><i class='icon far fa-trash-alt'></i>Eliminar</button><button type='button' class='editar btn btn-warning ' data-toggle='modal' data-target='#modalEditar'><i class='icon fas fa-user-edit '></i>Editar</button>"}
-		
 		],
+		
 		"language":{
 			"sProcessing":     "Procesando...",
 			"sLengthMenu":     "Mostrar _MENU_ registros",
@@ -40,11 +63,8 @@ $(document).ready(function () {
 				"copy": "Copiar",
 				"colvis": "Visibilidad",
 			}
-		}
-			
-			
-
-});
+		},
+	});
 	
 	//recarga pagina
 	 setInterval(function(){
@@ -123,8 +143,6 @@ $(document).ready(function () {
 			}
 			$('#frmnuevo').trigger('reset');
 		})
-		
-		
 	});
    
 

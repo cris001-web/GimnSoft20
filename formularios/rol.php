@@ -18,6 +18,10 @@ if ($_SESSION['descripcion']=='Administrador' ||  $_SESSION['descripcion']=='Sup
 	<script type="text/javascript"   src="../librerias/DataTables/jquery.dataTables.min.js"></script>
 	<script type="text/javascript"   src="../librerias/DataTables/dataTables.bootstrap4.min.js"></script>
 	
+
+	<!-- <script type="text/javascript"   src="https://code.jquery.com/jquery-3.5.1.js"></script>
+	<script type="text/javascript"   src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script> -->
+	
 	<!-- alertify -->
 	<link rel="stylesheet" type="text/css" href="../librerias/alertifyjs/css/alertify.css">
 	<link rel="stylesheet" type="text/css" href="../librerias/alertifyjs/css/themes/default.css"> 
@@ -30,8 +34,12 @@ if ($_SESSION['descripcion']=='Administrador' ||  $_SESSION['descripcion']=='Sup
 	<link rel="stylesheet" href="../librerias/bootstrap4/css/bootstrap.min.css"></link>
 	
 	<!-- bootstrap datatable css -->
-	<link rel="stylesheet" href="../librerias/DataTables/bootstrap.css"></link> 
+	<link rel="stylesheet" href="../librerias/DataTables/bootstrap.css"></link>
 	<link rel="stylesheet" href="../librerias/DataTables/dataTables.bootstrap4.min.css"></link>
+	<!-- <link rel="stylesheet" href="../librerias/DataTables/fixedHeader.dataTables.min.css"></link> -->
+
+	<link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css"></link>
+	
 
 	<!-- bootstrap css -->
 	<link rel="stylesheet" href="../librerias/bootstrap4/css/bootstrap.min.css"></link>
@@ -66,9 +74,9 @@ if ($_SESSION['descripcion']=='Administrador' ||  $_SESSION['descripcion']=='Sup
 				<thead class="thead-dark">
 					<tr>
 						
-						<th scope="col">#</th>
+						<th scope="col" class="p">#</th>
 						<th scope="col">Nombre</th>
-						<th scope="col">Opciones</th>
+						<th scope="col">Opciones</th> 
 
 
 					</tr>
@@ -105,7 +113,7 @@ if ($_SESSION['descripcion']=='Administrador' ||  $_SESSION['descripcion']=='Sup
 					
 		  </div>
 		</div>
-	  </div>
+	</div>
 
 	  <!-- Modal Editar -->
 	<div class="modal" tabindex="-1" role="dialog" id="modalEditar">
@@ -139,35 +147,36 @@ if ($_SESSION['descripcion']=='Administrador' ||  $_SESSION['descripcion']=='Sup
 		 <!-- Modal Borrar -->
 		<div class="modal" tabindex="-1" role="dialog" id="modalBorrar">
 			<div class="modal-dialog" role="document">
-			  <div class="modal-content">
-				<div class=" head-delete modal-header">
-				  <h5 class="modal-title "><i class='icon far fa-trash-alt'></i>Eliminar Rol</h5>
-				  <button type="button" class="close" data-dismiss="modal" aria-label="Close" >
-					<span aria-hidden="true">&times;</span>
-				  </button>
-				</div>
-				<div class="modal-body">
-					<form id="frmborrar">
-						<div class="form-group">
-							<input type="hidden" id="id_rolel"></input>
-							<label class="descripcion">¿Seguro Que Deseas Eliminar el Registro?</label>
-							
-	
-						</div>
-						
-						<div class="modal-footer">
-							<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-							<button type="submit" class="btn btn-danger" >Eliminar</button>
+			    <div class="modal-content">
+					<div class=" head-delete modal-header">
+					<h5 class="modal-title "><i class='icon far fa-trash-alt'></i>Eliminar Rol</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close" >
+						<span aria-hidden="true">&times;</span>
+					</button>
+					</div>
+					<div class="modal-body">
+						<form id="frmborrar">
+							<div class="form-group">
+								<input type="hidden" id="id_rolel"></input>
+								<label class="descripcion">¿Seguro Que Deseas Eliminar el Registro?</label>
+								
+		
 							</div>
-					</form>
-				</div>
+							
+							<div class="modal-footer">
+								<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+								<button type="submit" class="btn btn-danger" >Eliminar</button>
+							</div>
+						</form>
+					</div>
 						
-			  </div>
+			    </div>
 			</div>
 		</div>
 	
 	  
 </body>
+
 </html>
 <?php
 }else if($_SESSION['rol']==''){
