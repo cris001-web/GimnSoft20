@@ -123,7 +123,7 @@ $(document).ready(function () {
 		
 				
 			});
-		});	
+	});
 	 //nuevo
 	$('#frmnuevo').submit(function(e){
 		

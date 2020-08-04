@@ -52,9 +52,7 @@ if ($_SESSION['descripcion']=='Administrador' ||  $_SESSION['descripcion']=='Sup
         <script type="text/javascript" src="../jq/user-alumno.js"></script>
 
     </head>
-    <style>
-       
-    </style>
+    
     <body>
            
 
@@ -240,7 +238,9 @@ if ($_SESSION['descripcion']=='Administrador' ||  $_SESSION['descripcion']=='Sup
 		  </div>
 		</div>
     </div>
-                               <!-- ModalEditar -->
+                <!-- Modal nuevo -->
+
+                <!-- Modal Editar -->
 
     <div class="modal" tabindex="-1" role="dialog" id="modalEditarUA" >
 		<div class="modal-dialog modal-lg" role="document">
