@@ -1,6 +1,6 @@
 <?php
 include('../database.php');
-
+sleep(5);
 $alias=$_POST['aliasL'];
 $contraseña=$_POST['contraseñaL'];
 

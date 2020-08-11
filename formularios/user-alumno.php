@@ -125,7 +125,7 @@ if ($_SESSION['descripcion']=='Administrador' ||  $_SESSION['descripcion']=='Sup
                         </div>
                         <div class="col-4">
                             <label class="foto">foto</label>  
-                            <input type="file" id="foto" name="foto" class=" btnFile btn btn-secondary"></input>
+                            <input type="file" id="fotoU" name="fotoU" class=" btnFile btn btn-secondary"></input>
                         </div>
                         
                     </div>
@@ -283,7 +283,7 @@ if ($_SESSION['descripcion']=='Administrador' ||  $_SESSION['descripcion']=='Sup
                         <div class="col-4">
                             <label class="foto">foto</label>  
                             <div id="img"></div>
-                            <input type="file" id="fotoE" name="fotoE" class=" btnFile btn btn-secondary"></input>
+                            <input type="file" id="fotoUE" name="fotoUE" class=" btnFile btn btn-secondary"></input>
                         </div>
                         
                     </div>

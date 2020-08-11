@@ -4,11 +4,11 @@ $(document).ready(function(){
     $('#dataTableUP thead tr ').clone(true).appendTo( '#dataTableUP thead' );
     $('#dataTableUP thead tr:eq(1) th').each( function (i) {
 		var title = $(this).text();
-		if (i==14) {
+		if (i==13 || i==14) {
 			
-			$(this).html( '<input type="text" placeholder=" Buscar " style="display:none;" />' );
+			$(this).html( '<input type="text" placeholder=" Buscar" style="display:none;" />' );
 		} else {
-			$(this).html( '<input type="text" placeholder=" Buscar " />' );	
+			$(this).html( '<input type="text" placeholder=" Buscar" />' );	
 		}
         
 		//hacemos consulta
@@ -37,16 +37,16 @@ $(document).ready(function(){
             {"data":"contraseña"},
             {"data":"rol_id"},
             {"data":"id_profesor"},
-            {"data":"nombre"},
+            {"data":"nombreP"},
             {"data":"apellido"},
             {"data":"fecha_nac"},
             {"data":"direccion"},
-            {"data":"num_telef"},
+            {"data":"num_telf"},
             {"data":"descripcion_loc"},
             {"data":"descripcion_sex"},
             {"data":"descripcion"},
             {
-            "data":"foto",
+            "data":"fotoU",
             "render":function(data,type,row){
                 var url = "../phpUA/album/";
                 return '<center><img src="'+url+"/"+data+'" width="70px" height="70px"/></center>';
@@ -138,13 +138,13 @@ $(document).ready(function(){
 
             success:function(respuesta){
                 console.log(respuesta);
-                if(respuesta=='SE REGISTRO CORRECTAMENTE'){
-                 alertify.success('SE REGISTRO CORRECTAMENTE');
+                if(respuesta=='SE REGISTRÓ CORRECTAMENTE'){
+                 alertify.success(respuesta);
                  $("#modalNuevoUP").modal('hide');
-               }else if (respuesta=='YA EXISTE ESTE ALIAS, INTENTE CON OTR0!'){
-                 alertify.error('YA EXISTE ESTE ALIAS, INTENTE CON OTR0!');
+               }else if (respuesta=='YA EXISTE ESTE ALIAS, INTENTE CON OTRO!'){
+                 alertify.error(respuesta);
                }else if (respuesta=='ERROR EN LA BASE DE DATOS'){
-                 alertify.error('ERROR EN LA BASE DE DATOS');
+                 alertify.error(respuesta);
 
                }
                $('#frmnuevoUP').trigger('reset');
@@ -223,12 +223,12 @@ var editar = function(tbody,table){
         $("#id_usuarioE").val(data.id_usuario);
         $("#aliasE").val(data.alias);
         $("#contraseñaE").val(data.contraseña);
-        $("#nombreE").val(data.nombre);
+        $("#nombrePE").val(data.nombreP);
         $("#apellidoE").val(data.apellido);
         $("#fecha_nacE").val(data.fecha_nac);
         $("#direccionE").val(data.direccion);
-        $("#num_telefE").val(data.num_telef);
-        //$("#select_locE").val(data.descripcion_loc);
+        $("#num_telfE").val(data.num_telf);
+        //$("#fotoUE").val(data.fotoU);
         //$("#select_locE").val(data.localidad_id);
         //$("#select_sexE").val(data.descripcion_sex);
         //$("#select_sexE").val(data.sexo_id);

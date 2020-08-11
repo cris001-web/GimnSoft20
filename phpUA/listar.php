@@ -2,7 +2,7 @@
 include('../database.php');
 
 
-  $query = "SELECT id_usuario, alias, id_alumno,foto,nombre,apellido,fecha_nac,objetivo,direccion,num_telf,
+  $query = "SELECT id_usuario, alias, id_alumno,fotoU,nombre,apellido,fecha_nac,objetivo,direccion,num_telf,
              localidad_id,descripcion_loc,sexo_id,descripcion_sex,rol_id,descripcion,contraseña  FROM `usuario`
             INNER JOIN alumno on usuario.id_usuario=alumno.usuario_id 
             INNER JOIN localidad on localidad_id=id_localidad 
@@ -35,7 +35,7 @@ include('../database.php');
       'rol_id'=>$row['rol_id'],  
       'descripcion'=>$row['descripcion'],
       'contraseña'=>$row['contraseña'],
-      'foto'=>$row['foto'],
+      'fotoU'=>$row['fotoU'],
 		);
     }
     $jsonstring = json_encode($json);

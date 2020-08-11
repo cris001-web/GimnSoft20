@@ -3,7 +3,7 @@ include('../database.php');
 
 
   $query = "SELECT * FROM actividad
-            INNER JOIN profesor on profesor_id=id_profesor";
+  INNER JOIN profesor on profesor_id=id_profesor";
   $result =  mysqli_query($conexion,$query);
 
     if (!$result) {
@@ -20,7 +20,7 @@ include('../database.php');
         'horario' => $row['horario'],
         'costo' => $row['costo'],
         'profesor_id' => $row['profesor_id'],
-        'nombre' => $row['nombre'],
+        'nombreP' => $row['nombreP'],
       
 		);
     }

@@ -117,9 +117,9 @@
 
                                     while ($row = mysqli_fetch_array($result)) {
                                         $id_profesor=$row['id_profesor'];
-                                        $nombre=$row['nombre'];
+                                        $nombreP=$row['nombreP'];
                                     ?>
-                                        <option value='<?php echo $id_profesor; ?>'><?php echo $nombre;?></option>
+                                        <option value='<?php echo $id_profesor; ?>'><?php echo $nombreP;?></option>
                                     <?php
                                     }
                                     ?>

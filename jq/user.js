@@ -94,7 +94,7 @@ $(document).ready(function () {
              
          }
         
-         $.ajax({
+        $.ajax({
     
              url:url+'?'+datos,
              type:'POST',
@@ -106,18 +106,18 @@ $(document).ready(function () {
             success:function(respuesta){
                 console.log(respuesta);
                 if(respuesta=='SE REGISTRÓ CORRECTAMENTE'){
-                toastr["success"]("SE REGISTRÓ CORRECTAMENTE");
+                alertify.success(respuesta);
                 $("#modalNuevoUS").modal('hide');
                 }else if (respuesta=='YA EXISTE ESTE ALIAS, INTENTE CON OTRO!'){
-                toastr["error"]("YA EXISTE ESTE ALIAS, INTENTE CON OTRO!");
+                alertify.error(respuesta);
                 }else if (respuesta=='ERROR EN LA BASE DE DATOS'){
-                toastr["warning"]("ERROR EN LA BASE DE DATOS");
+                alertify.warning(respuesta);
 
                 }
                 $('#frmnuevoUS').trigger('reset');
                  return false;
-             }
-         });
+            }
+        });
          return false;
     });
 
@@ -145,17 +145,17 @@ $(document).ready(function () {
             
             success:function(respuesta){
                
-                if(respuesta=='SE REGISTRÓ CORRECTAMENTE'){
-                    toastr["success"]("SE REGISTRÓ CORRECTAMENTE");
-                    alert("SE REGISTRÓ CORRECTAMENTE");
+                if(respuesta=='SE EDITÓ CORRECTAMENTE'){
+                    
+                    alertify.success(respuesta);
                     $("#modalEditarUS").modal('hide');
                 
                 }else if (respuesta=='YA EXISTE ESTE ALIAS, INTENTE CON OTRO!'){
-                    toastr["error"]("YA EXISTE ESTE ALIAS, INTENTE CON OTRO!");
+                    alertify.error(respuesta);
                 }else if (respuesta=='ERROR EN LA BASE DE DATOS'){
-                    toastr["warning"]("ERROR EN LA BASE DE DATOS");
+                    alertify.warning(respuesta);
                 }
-                $('#frmEditarUS').trigger('reset');
+                $('#frmeditarUS').trigger('reset');
                 return false;
             }
            
@@ -176,9 +176,9 @@ $(document).ready(function () {
 			 $.post('../phpUS/borrar-US.php', postData,function(respuesta) {
 				console.log(respuesta);
 					if(respuesta=='ERROR EN LA BASE DE DATOS'){
-						toastr["warning"]("ERROR EN LA BASE DE DATOS");
+                        alertify.error(respuesta);
 					}else if(respuesta=='SE BORRÓ CORRECTAMENTE'){
-						toastr["success"]("SE BORRÓ CORRECTAMENTE");
+                        alertify.success(respuesta);
 						$("#modalBorrarUS").modal('hide');
 	
 					}

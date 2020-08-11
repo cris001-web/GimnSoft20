@@ -40,7 +40,7 @@ $(document).ready(function () {
                 {"data":"contraseña"},
                 {"data":"objetivo"},
                 {
-                    "data":"foto",
+                    "data":"fotoU",
                     "render":function(data,type,row){
                          var url = "../phpUA/album/";
                         return '<center><img src="'+url+"/"+data+'" width="70px" height="70px" /></center>';
@@ -129,18 +129,18 @@ $(document).ready(function () {
                    
                     success:function(respuesta){
                        console.log(respuesta);
-                       if(respuesta=='SE REGISTRO CORRECTAMENTE'){
-                        alertify.success('SE REGISTRÓ CORRECTAMENTE')
+                       if(respuesta=='SE REGISTRÓ CORRECTAMENTE'){
+                        alertify.success(respuesta)
 
                         $("#modalNuevoUA").modal('hide');
                        }else if (respuesta=='YA EXISTE ESTE ALIAS, INTENTE CON OTRO!'){
                         alertify.error('¡YA EXISTE ESTE ALIAS, INTENTE CON OTRO!')
                         
                        }else if (respuesta=='ERROR EN LA BASE DE DATOS'){
-                        alertify.warning('ERROR EN LA BASE DE DATOS');
+                        alertify.warning(respuesta);
 
                        }
-                       //$('#frmnuevoUA').trigger('reset');
+                       $('#frmnuevoUA').trigger('reset');
                         return false;
                     }
                 });
@@ -172,15 +172,15 @@ $(document).ready(function () {
                     success:function(respuesta){
                        console.log(respuesta);
                         if(respuesta=='SE EDITÓ CORRECTAMENTE'){
-                         alertify.success('SE EDITÓ CORRECTAMENTE');
-                         //$("#modalEditarUA").modal('hide');
+                            alertify.success(respuesta);
+                        $("#modalEditarUA").modal('hide');
                         
                         }else if (respuesta=='YA EXISTE EL ALIAS, INTENTE CON OTRO!'){
-                            alertify.error('YA EXISTE EL ALIAS, INTENTE CON OTRO!');
+                            alertify.error('¡YA EXISTE EL ALIAS, INTENTE CON OTRO!');
                         }else if (respuesta=='ERROR EN LA BASE DE DATOS'){
-                            alertify.error('ERROR EN LA BASE DE DATOS');
+                            alertify.error(respuesta);
                         }
-                      //$('#frmEditarUA').trigger('reset');
+                        $('#frmEditarUA').trigger('reset');
                         return false;
                     }
                    
@@ -203,11 +203,11 @@ $(document).ready(function () {
 					if(respuesta=='ERROR EN LA BASE DE DATOS'){
 						alertify.error(respuesta);
 					}else if(respuesta=='SE BORRO EXITOSAMENTE'){
-						alertify.success('SE BORRO EXITOSAMENTE!');
+						alertify.success('SE BORRÓ EXITOSAMENTE!');
 						$("#modalBorrar").modal('hide');
 	
 					}
-		
+                    $('#frmborrarUA').trigger('reset');
 				
 			});
 	});	

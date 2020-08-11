@@ -1,9 +1,9 @@
-$(document).ready(function () {
+$(document).ready(function(){
     // agrega un input para cada columna
-    $('#dataTableUC thead tr ').clone(true).appendTo( '#dataTableUC thead' );
-    $('#dataTableUC thead tr:eq(1) th').each( function (i) {
+    $('#dataTableIP thead tr ').clone(true).appendTo( '#dataTableIP thead' );
+    $('#dataTableIP thead tr:eq(1) th').each( function (i) {
 		var title = $(this).text();
-		if (i==7) {
+		if (i==8) {
 			
 			$(this).html( '<input type="text" placeholder=" Buscar " style="display:none;" />' );
 		} else {
@@ -22,22 +22,23 @@ $(document).ready(function () {
     });
     
 
-    var table =$('#dataTableUC').DataTable({
+    var table =$('#dataTableIP').DataTable({
     	orderCellsTop: true,
 		fixedHeader: true,
 		"ajax":{
-			"url":"../phpUC/listar.php",
+			"url":"../phpIP/listar.php",
             "dataSrc":"",
         },
             "columns":[
-                {"data":"id_actividad"},
+                {"data":"id_pago"},
+                {"data":"alumno_id"},
+                {"data":"nombre"},
+                {"data":"actividad_id"},
                 {"data":"nombreAc"},
-                {"data":"dias"},
-                {"data":"horario"},
-                {"data":"costo"},
-                {"data":"profesor_id"},
-                {"data":"nombreP"},
-                {"defaultContent":"<button type='button' class='borrar btn btn-danger mb-2 ' data-toggle='modal' data-target='#modalBorrarUC'><i class='icon far fa-trash-alt'></i>Eliminar</button><button type='button' class='editar btn btn-warning ' data-toggle='modal' data-target='#modalEditarUC'><i class='icon fas fa-user-edit '></i>Editar</button>"},
+                {"data":"fecha_vencimiento"},
+                {"data":"resto"},
+                {"data":"fecha_pago"},
+                {"defaultContent":"<button type='button' class='borrar btn btn-danger mb-2 ' data-toggle='modal' data-target='#modalBorrarIP'><i class='icon far fa-trash-alt'></i>Eliminar</button><button type='button' class='editar btn btn-warning ' data-toggle='modal' data-target='#modalEditarIP'><i class='icon fas fa-user-edit '></i>Editar</button>"},
                 ],
                 "language":{
                     "sProcessing":     "Procesando...",
@@ -70,82 +71,82 @@ $(document).ready(function () {
                 },
                 "columnDefs": [
                     {
-                        "targets": [ 5 ],
+                        "targets": [ 1 ],
                         "visible": false,
                         "searchable": false
                     },
-                    
+                    {
+                        "targets": [ 3 ],
+                        "visible": false,
+                        "searchable": false
+                    }
                 ]
     });
-    //recarga pagina
-	setInterval(function(){
-        table.ajax.reload(null,false);
-    },1000);
-    editar("#dataTableUC tbody", table);
-    borrar("#dataTableUC tbody", table);
+    editar("#dataTableIP tbody", table);
+    borrar("#dataTableIP tbody", table);
      //nuevo
-	$('#frmnuevoUC').submit(function(e){
+	$('#frmnuevoIP').submit(function(e){
 		
 		e.preventDefault();
 		
 		const postData = {
-            nombreAc: $('#nombreAc').val(),
-            profesor_id: $('#profesor_id').val(),
-            dias: $('#dias').val(),
-            horario: $('#horario').val(),
-            costo: $('#costo').val()
+            alumno_id: $('#alumno_id').val(),
+            actividad_id: $('#actividad_id').val(),
+            fecha_vencimiento: $('#fecha_vencimiento').val(),
+            fecha_pago: $('#fecha_pago').val(),
+            resto: $('#resto').val()
 		};
-		$.post('../phpUC/agregar-UC.php',postData,function(respuesta){
-			if(respuesta=='YA EXISTE ESTA ACTIVIDAD, INTENTE CON OTRA!'){
-				alertify.error(respuesta);
+		$.post('../phpIP/agregar-IP.php',postData,function(respuesta){
+            console.log(respuesta);
+			if(respuesta=='YA EXISTE EL MISMO PAGO'){
+			    alertify.error(respuesta);
 			}else if(respuesta=='ERROR DE BASE DE DATOS'){
-				alertify.error(respuesta);
-			}else if(respuesta=='SE AGREGÓ EXITOSAMENTE!'){
-				alertify.success(respuesta);
-				$("#modalNuevoUC").modal('hide');
+			    alertify.error(respuesta);
+			}else if(respuesta=='EL PAGO SE HIZO EXITOSAMENTE'){
+			    alertify.success(respuesta);
+			$("#modalNuevoIP").modal('hide');
 			}
-			$('#frmnuevoUC').trigger('reset');
+			$('#frmnuevoIP').trigger('reset');
 		})
     });
-    
+
     //editar post
-	$("#frmeditarUC").submit(function(e){
+	$("#frmeditarIP").submit(function(e){
 		
         e.preventDefault();
             const postData = {
-                id_actividad:$('#id_actividadE').val(),
-                nombreAc: $('#nombreAcE').val(),
-                profesor_id: $('#profesor_idE').val(),
-                dias: $('#diasE').val(),
-                horario: $('#horarioE').val(),
-                costo: $('#costoE').val()
+                id_pago:$('#id_pagoE').val(),
+                alumno_id: $('#alumno_idE').val(),
+                actividad_id: $('#actividad_idE').val(),
+                fecha_vencimiento: $('#fecha_vencimientoE').val(),
+                fecha_pago: $('#fecha_pagoE').val(),
+                resto: $('#restoE').val()
             };
         
-            $.post('../phpUC/editar-UC.php', postData,function(respuesta) {
+            $.post('../phpIP/editar-IP.php', postData,function(respuesta) {
                 console.log(respuesta);
                     if(respuesta=='ERROR EN LA BASE DE DATOS'){
                         alertify.error(respuesta);
-                    }else if(respuesta=='YA EXISTE ESTA ACTIVIDAD, INTENTE CON OTRA!'){
+                    }else if(respuesta=='YA EXISTE ESTE PAGO, INTENTE CON OTRO'){
                         alertify.error(respuesta);
                     }else if(respuesta=='1SE EDITÓ EXITOSAMENTE!'){
                         alertify.success('SE EDITÓ EXITOSAMENTE!');
-                        $("#modalEditarUC").modal('hide');
+                       $("#modalEditarIP").modal('hide');
     
                     }
         
-                $('#frmeditarUC').trigger('reset');
+                $('#frmeditarIP').trigger('reset');
             });
     });
-
     //borrar post
-	$("#frmborrarUC").submit(function(e){
+	$("#frmborrarIP").submit(function(e){
 		
 		e.preventDefault();
 			const postData = {
-				id_actividad:$('#id_actividadB').val()
+				id_pago:$('#id_pagoB').val()
 			};
 		
-			$.post('../phpUC/borrar-UC.php', postData,function(respuesta) {
+			$.post('../phpIP/borrar-IP.php', postData,function(respuesta) {
 				console.log(respuesta);
 					if(respuesta=='ERROR EN LA BASE DE DATOS'){
 						alertify.error(respuesta);
@@ -153,41 +154,38 @@ $(document).ready(function () {
 						alertify.error(respuesta);
 					}else if(respuesta=='1SE BORRÓ EXITOSAMENTE'){
 						alertify.success('SE BORRÓ EXITOSAMENTE!');
-						$("#modalBorrarUC").modal('hide');
+						$("#modalBorrarIP").modal('hide');
 	
 					}
-                    $('#frmborrarUC').trigger('reset')
+                    $('#frmborrarIP').trigger('reset')
 				
 			});
 	});
+    
 });
 
  //editar mostrar campo
  var editar = function(tbody,table){
     $(tbody).on("click","button.editar",function(){
         var data = table.row($(this).parents("tr")).data();
-        console.log(data);
-        
-        $("#id_actividadE").val(data.id_actividad);
-        $("#nombreAcE").val(data.nombreAc);
-        $("#diasE").val(data.dias);
-        $("#horarioE").val(data.horario);
-        $("#costoE").val(data.costo);
-        $("#costoE").val(data.costo);
-        $('#profesor_idE').append('<option value="'+Object.values([data.profesor_id])+'" selected="selected">'+Object.values([data.nombre])+'</option>');
+        alert(Object.values([data.fecha_pago]));
+        $("#id_pagoE").val(data.id_pago);
+        $('#alumno_idE').append('<option value="'+Object.values([data.alumno_id])+'" selected="selected">'+Object.values([data.nombre])+'</option>');
+        $('#actividad_idE').append('<option value="'+Object.values([data.actividad_id])+'" selected="selected">'+Object.values([data.nombreAc])+'</option>');
+        $("#fecha_vencimientoE").val(data.fecha_vencimiento);
+        $("#fecha_pagoE").val(data.fecha_pago);
+        $("#restoE").val(data.resto);
+     
 
     }); 
-
+ 
 }
- //borrar mostrar campo
- var borrar = function(tbody,table){
+//borrar mostrar campo
+var borrar = function(tbody,table){
     $(tbody).on("click","button.borrar",function(){
         var data = table.row($(this).parents("tr")).data();
         console.log(data);
         
-        $("#id_actividadB").val(data.id_actividad);
-        
-
-    }); 
-
+        $("#id_pagoB").val(data.id_pago);
+}); 
 }

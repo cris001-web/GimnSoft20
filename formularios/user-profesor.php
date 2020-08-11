@@ -124,7 +124,7 @@ if ($_SESSION['descripcion']=='Administrador' ||  $_SESSION['descripcion']=='Sup
                         <div class="col-4">
                             <label class="foto">foto</label>  
                             
-                                <input type="file" id="foto" name="foto" class=" btnFile btn btn-secondary"   ></input>
+                                <input type="file" id="fotoU" name="fotoU" class=" btnFile btn btn-secondary"   ></input>
                          
                            
                         </div>
@@ -134,7 +134,7 @@ if ($_SESSION['descripcion']=='Administrador' ||  $_SESSION['descripcion']=='Sup
                      <div class="form-row">
                         <div class="col-4">
                             <label class="nombre">Nombre</label>  
-                            <input type="text" class="form-control" placeholder="Nombre" name="nombre" id="nombre" >
+                            <input type="text" class="form-control" placeholder="Nombre" name="nombreP" id="nombreP" >
                         </div>
                         <div class="col-4">
                             <label class="apellido">Apellido</label>  
@@ -275,15 +275,15 @@ if ($_SESSION['descripcion']=='Administrador' ||  $_SESSION['descripcion']=='Sup
                         <div class="col-4">
                             <label class="foto">foto</label>  
                             
-                                <input type="file" id="fotoE" name="fotoE" class=" btnFile btn btn-secondary"></input>
+                                <input type="file" id="fotoUE" name="fotoUE" class=" btnFile btn btn-secondary"></input>
                         </div>
                         
                     </div>
                     <hr w-70>
                      <div class="form-row">
                         <div class="col-4">
-                            <label class="nombre">Nombre</label>  
-                            <input type="text" class="form-control" placeholder="Nombre" name="nombreE" id="nombreE" >
+                            <label class="nombreP">Nombre</label>  
+                            <input type="text" class="form-control" placeholder="Nombre" name="nombrePE" id="nombrePE" >
                         </div>
                         <div class="col-4">
                             <label class="apellido">Apellido</label>  

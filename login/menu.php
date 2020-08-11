@@ -33,13 +33,13 @@
 
 				//query buscador foto
 				include('../database.php');
-				$query = "(SELECT foto FROM usuario INNER JOIN alumno ON id_usuario=usuario_id WHERE alias='$alias') UNION (SELECT foto FROM usuario INNER JOIN profesor ON id_usuario=usuario_id WHERE alias='$alias') ";
+				$query = "SELECT fotoU FROM `usuario` WHERE alias='$alias'";
 				$result =  mysqli_query($conexion,$query);
 
 				$cant_row= mysqli_num_rows($result);
 				while($row = mysqli_fetch_array($result)){
 					if($cant_row==1){
-						$foto=$row['foto'];
+						$foto=$row['fotoU'];
 					}else{
 						echo 'no';
 					}

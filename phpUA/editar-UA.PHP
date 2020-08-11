@@ -15,12 +15,12 @@ $sexo_id=$_GET["select_sexE"];
 $rol_id=$_GET["select_rolE"];
 $objetivo=$_GET["objetivoE"];
 $fecha_nac=$_GET["fecha_nacE"];
-$foto_pre=$_FILES['fotoE'];
+$foto_pre=$_FILES['fotoUE'];
     //si foto viene vacia pongo foto de perfil x default
     if($foto_pre==null){
-        $foto='perfil.jpg';
+        $fotoUE='perfil.jpg';
     }else{
-        $foto= date('Y-m-d').date('H-i-s').'.jpg';
+        $fotoUE= date('Y-m-d').date('H-i-s').'.jpg';
     }
 
 $objetivo=$_GET["objetivoE"];
@@ -34,15 +34,15 @@ $objetivo=$_GET["objetivoE"];
         
 
         if($cant_row==0){
-            $query_usuario_update = "UPDATE usuario SET alias = '$alias', contraseña = '$contraseña', rol_id='$rol_id'  WHERE id_usuario = '$id_usuario'";
+            $query_usuario_update = "UPDATE usuario SET alias = '$alias', contraseña = '$contraseña', rol_id='$rol_id',fotoU='$fotoUE'  WHERE id_usuario = '$id_usuario'";
             $result_usuario_update= mysqli_query($conexion,$query_usuario_update);
             //si query usuario es correcto, preparo query alumno
             if($result_usuario_update){
               
-                $query_alumno_update="UPDATE alumno SET nombre = '$nombre', apellido = '$apellido',fecha_nac='$fecha_nac',objetivo='$objetivo',direccion='$direccion',num_telf='$num_telf',localidad_id='$localidad_id',sexo_id='2', usuario_id='$id_usuario',foto='$foto'  WHERE usuario_id = '$id_usuario'"; 
+                $query_alumno_update="UPDATE alumno SET nombre = '$nombre', apellido = '$apellido',fecha_nac='$fecha_nac',objetivo='$objetivo',direccion='$direccion',num_telf='$num_telf',localidad_id='$localidad_id',sexo_id='2', usuario_id='$id_usuario' WHERE usuario_id = '$id_usuario'"; 
                 $result_alumno_update= mysqli_query($conexion,$query_alumno_update);
                  //codigo foto
-                 move_uploaded_file($_FILES['fotoE']['tmp_name'],'album/'.$foto);
+                 move_uploaded_file($_FILES['fotoUE']['tmp_name'],'album/'.$fotoUE);
                     if($result_alumno_update){
                         echo 'SE EDITÓ CORRECTAMENTE';
                     }else{

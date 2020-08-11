@@ -142,7 +142,7 @@
 		</div>
 	</div>
 
-      <!-- Modal Editar -->
+                <!-- Modal Editar -->
         <div class="modal" tabindex="-1" role="dialog" id="modalEditarUS">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -212,8 +212,8 @@
                 </div>
             </div>
         </div>
-    
-     <!-- Modal Borrar -->
+               <!-- Modal Editar -->
+               <!-- Modal Borrar -->
 		<div class="modal" tabindex="-1" role="dialog" id="modalBorrarUS">
 			<div class="modal-dialog" role="document">
 			    <div class="modal-content">
@@ -226,7 +226,7 @@
 					<div class="modal-body">
 						<form id="frmborrarUS">
 							<div class="form-group">
-								<input type="text" id="id_usuarioB"></input>
+								<input type="hidden" id="id_usuarioB"></input>
 								<label class="descripcion">¿Seguro Que Deseas Eliminar el Registro?</label>
 								
 		

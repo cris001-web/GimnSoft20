@@ -193,22 +193,22 @@ function validarUPedit(){
     }
 
     
-    if(nombreE==''){
+    if(nombrePE==''){
         setTimeout(function(){
-            $('#nombreE'  ).css({ border: "1px solid #dd5144" });
+            $('#nombrePE'  ).css({ border: "1px solid #dd5144" });
         },0000);
         setTimeout(function(){
-            $('#nombreE'  ).css({ border: "1px solid #ced4da"});
+            $('#nombrePE'  ).css({ border: "1px solid #ced4da"});
         },3000);
         mostrarMsjVacio(); 
         return false;
     }
-    if(!pattern.test(nombreE)){
+    if(!pattern.test(nombrePE)){
         setTimeout(function(){
-            $('#nombreE'  ).css({ border: "1px solid #dd5144"});
+            $('#nombrePE'  ).css({ border: "1px solid #dd5144"});
         },0000);
         setTimeout(function(){
-            $('#nombreE'  ).css({ border: "1px solid #ced4da"});
+            $('#nombrePE'  ).css({ border: "1px solid #ced4da"});
         },3000);
         validarLetras();
         return false; 

@@ -14,12 +14,12 @@ $select_sex=$_GET["select_sex"];
 $select_rol=$_GET["select_rol"];
 $objetivo=$_GET["objetivo"];
 $fecha_nac=$_GET["fecha_nac"];
-$foto_pre=$_FILES['foto'];
+$foto_pre=$_FILES['fotoU'];
     //si foto viene vacia pongo foto de perfil x default
     if($foto_pre==null){
-        $foto='perfil.jpg';
+        $fotoU='perfil.jpg';
     }else{
-        $foto= date('Y-m-d').date('H-i-s').'.jpg';
+        $fotoU= date('Y-m-d').date('H-i-s').'.jpg';
     }
 
 
@@ -32,7 +32,7 @@ $foto_pre=$_FILES['foto'];
     $cant_row= mysqli_num_rows($result_repetir);
 
     if($cant_row==0){
-        $query_usuario = "INSERT INTO usuario (alias,contraseña,rol_id) VALUES ('$alias','$contraseña','$select_rol')";
+        $query_usuario = "INSERT INTO usuario (alias,contraseña,rol_id,fotoU) VALUES ('$alias','$contraseña','$select_rol','$fotoU')";
         $result_usuario =  mysqli_query($conexion,$query_usuario);
 
         //si inserccion de usuario es correcta, obtengo el id
@@ -47,15 +47,15 @@ $foto_pre=$_FILES['foto'];
                 }
                
                 $query_alumno = "INSERT INTO alumno 
-                            (nombre,apellido,fecha_nac,objetivo,direccion,num_telf,localidad_id,sexo_id,usuario_id,foto) 
+                            (nombre,apellido,fecha_nac,objetivo,direccion,num_telf,localidad_id,sexo_id,usuario_id) 
                             VALUES ('$nombre','$apellido','$fecha_nac','$objetivo','$direccion',
-                            '$num_telf','$select_loc','$select_sex','$var_usuario_id','$foto')";
+                            '$num_telf','$select_loc','$select_sex','$var_usuario_id')";
                 $result_alumno =  mysqli_query($conexion,$query_alumno);
                 //codigo foto
-                move_uploaded_file($_FILES['foto']['tmp_name'],'album/'.$foto);
+                move_uploaded_file($_FILES['fotoU']['tmp_name'],'album/'.$fotoU);
                 if ( $result_alumno) {
                    //echo'query_alumno correcto  ';
-                   echo ('SE REGISTRO CORRECTAMENTE');
+                   echo ('SE REGISTRÓ CORRECTAMENTE');
                    
                 }else {
                     echo ('ERROR, INTENTE NUEVAMENTE');
