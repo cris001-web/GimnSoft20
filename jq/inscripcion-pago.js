@@ -38,7 +38,7 @@ $(document).ready(function(){
                 {"data":"fecha_vencimiento"},
                 {"data":"resto"},
                 {"data":"fecha_pago"},
-                {"defaultContent":"<button type='button' class='borrar btn btn-danger mb-2 ' data-toggle='modal' data-target='#modalBorrarIP'><i class='icon far fa-trash-alt'></i>Eliminar</button><button type='button' class='editar btn btn-warning ' data-toggle='modal' data-target='#modalEditarIP'><i class='icon fas fa-user-edit '></i>Editar</button>"},
+                {"defaultContent":"<div style='display:ruby;'>  <button type='button' class='borrar btn btn-danger  ' data-toggle='modal' data-target='#modalBorrarIP'><i class='icon far fa-trash-alt'></i>Eliminar</button>  <button type='button' class='editar btn btn-warning ' data-toggle='modal' data-target='#modalEditarIP'><i class='icon fas fa-user-edit '></i>Editar</button>    <button type='button' class='exportar btn btn-success  ' data-toggle='modal' data-target='#modalExportar' ><i class='fas fa-file-export'></i> Exportar</button>"},
                 ],
                 "language":{
                     "sProcessing":     "Procesando...",
@@ -84,6 +84,7 @@ $(document).ready(function(){
     });
     editar("#dataTableIP tbody", table);
     borrar("#dataTableIP tbody", table);
+    exportar("#dataTableIP tbody", table);
      //nuevo
 	$('#frmnuevoIP').submit(function(e){
 		
@@ -160,7 +161,9 @@ $(document).ready(function(){
                     $('#frmborrarIP').trigger('reset')
 				
 			});
-	});
+    });
+    
+
     
 });
 
@@ -188,4 +191,31 @@ var borrar = function(tbody,table){
         
         $("#id_pagoB").val(data.id_pago);
 }); 
+
+}
+//Exporta para generar id
+var exportar = function (tbody,table){
+    $(tbody).on("click","button.exportar",function(){
+        var data=table.row($(this).parents("tr")).data();
+        console.log(data);
+        $("#id").val(data.id_pago);
+        
+            $.ajax({
+                data: data,
+                url: "../formularios/inscripcion-pago.php",
+                type: "get",
+                beforeSend:function(){
+                    toastr["info"]("Generando Ticket...");
+                                  
+                }
+                 
+            });
+            
+            setTimeout(function(){
+                $('#generar_pdf').show(1000);
+            },5000);
+            setTimeout(function(){
+                $('#generar_pdf').hide(1000);
+            },20000);  
+	});
 }

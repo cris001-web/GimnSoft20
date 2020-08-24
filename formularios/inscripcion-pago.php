@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -11,6 +12,7 @@
         <script type="text/javascript"   src="../librerias/DataTables/jquery.dataTables.min.js"></script>
         <script type="text/javascript"   src="../librerias/DataTables/dataTables.bootstrap4.min.js"></script>
         
+        
 
         <!-- alertify -->
         <link rel="stylesheet" type="text/css" href="../librerias/alertifyjs/css/alertify.css">
@@ -20,6 +22,7 @@
         <!-- bootstrap js -->
         <script type="text/javascript"   src="../librerias/bootstrap4/js/bootstrap.min.js"></script>
 
+        
        
         <!-- bootstrap datatable css -->
         <link rel="stylesheet" href="../librerias/DataTables/bootstrap.css"></link>
@@ -34,6 +37,8 @@
         <link rel="stylesheet" href="../estilos/style-gral.css"></link>
         <link rel="stylesheet" type="text/css" href="../estilos/style_menu.css">
 
+        <!--toastr-->
+        <link rel="stylesheet" href="../librerias/toastr/toastr.min.css">
         <!-- fontawesone -->
         <link rel="stylesheet" type="text/css" href="../librerias/fontawesome/fontawesome/css/all.min.css"> 
         
@@ -43,11 +48,23 @@
         <script type="text/javascript" src="../jq/inscripcion-pago.js"></script>
     </head>
     <body>
-
+        
     <!-- tabla -->
 	<div class="container my-4">
         <div class="my-2">
-            <button class="btn btn-primary my-2 my-sm-0" type="submit" data-toggle="modal" data-target="#modalNuevoIP" m-3 ><i class="icon fas fa-user-plus">Nuevo</i></button>
+            <button class="btn btn-primary my-2 mt-3 my-sm-0" type="submit" data-toggle="modal" data-target="#modalNuevoIP" m-3 ><i class="icon fas fa-user-plus">Nuevo</i></button>
+            <br>
+            <!-- FORM PARA ENVIAR ID DEL PAGO, PDF -->
+            <form method="GET" action="../crearPDFTicket.php">
+                <input type="hidden" class="form-control"  id="id" name="id" class=" btnFile btn btn-secondary" placeholder="Resto">
+                <input type="hidden" class="form-control"  id="fecha_pagoPDF" name="fecha_pagoPDF" class=" btnFile btn btn-secondary" placeholder="Resto"> 
+                
+                <div style="position: relative; margin-top: 4px;">
+                    <button class="btn btn-success  mt-2 " type="submit" name="generar_pdf" id="generar_pdf"  style="display: none; margin-top:25px;"><i class="fas fa-file-invoice"> Ver Ticket</i></button>
+                </div>
+                    
+            </form> 
+            <!-- FORM PARA ENVIAR ID DEL PAGO, PDF -->
         </div>
 
         <table class=" table table-striped table-bordered"  id="dataTableIP"  width="100%">
@@ -63,7 +80,7 @@
                     <th scope="col">Fecha de Vencimiento</th>
                     <th scope="col">Resto</th>
                     <th scope="col">Fecha de Pago</th>
-                    <th scope="col">Opciones</th>
+                    <th scope="col" >Opciones</th>
 
                 </tr>
             </thead>
@@ -71,6 +88,7 @@
         </table>
     </div>
     <!-- tabla -->
+     
     			<!-- Modal nuevo -->
         <div class="modal" tabindex="-1" role="dialog" id="modalNuevoIP" >
                     <div class="modal-dialog modal-lg" role="document">
@@ -258,6 +276,7 @@
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal" >Close</button>
                                     <button type="submit" class="btn btn-primary" onclick="return validarIPedit(); " >Editar</button>
+                                    
                                 </div>
                             </form>
                         </div>
@@ -294,5 +313,11 @@
 			</div>
         </div>
              <!-- Modal Borrar -->
+
+                  
+    <!--toastr-->
+    <script type="text/javascript" src="../librerias/toastr/toastr.min.js"></script>  
     </body>
+   
+     
 </html>

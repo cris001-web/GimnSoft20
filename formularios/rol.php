@@ -1,8 +1,8 @@
-<?php
+<!-- <?php
 session_start();
 if ($_SESSION['descripcion']=='Administrador' ||  $_SESSION['descripcion']=='Super Admin'  ) {
 	
-?>
+?> -->
 
 
 <!DOCTYPE html>
@@ -178,9 +178,9 @@ if ($_SESSION['descripcion']=='Administrador' ||  $_SESSION['descripcion']=='Sup
 </body>
 
 </html>
-<?php
+<!-- <?php
 }else if($_SESSION['rol']==''){
 	echo'no';
 	die();
 }
-?>
+?> -->

@@ -1,8 +1,8 @@
-<?php
-session_start();
-if ($_SESSION['descripcion']=='Administrador' ||  $_SESSION['descripcion']=='Super Administrador'  ) {
+// <?php
+//session_start();
+//if ($_SESSION['descripcion']=='Administrador' ||  $_SESSION['descripcion']=='Super Administrador'  ) {
 	
-?>
+//?> 
 <!DOCTYPE html>
 <html>
     <head>
@@ -21,31 +21,31 @@ if ($_SESSION['descripcion']=='Administrador' ||  $_SESSION['descripcion']=='Sup
     </head>
 
   <body>
-    <nav class="navbar navbar-light mb-5" style="background-color:#34495E ;">
+    <!-- <nav class="navbar navbar-light mb-5" style="background-color:#34495E ;">
       <!-- <div class="collapse navbar-collapse" id="navbarText"> -->
 			  
-			  <span class="navbar-text ml-auto text-white">
+			  <!-- <span class="navbar-text ml-auto text-white">
 				<?php 
 				//recibo variable session de login 
-				$descripcion = $_SESSION['descripcion'];
-				$alias = $_SESSION['alias'];
-				echo $descripcion.': ';
-				echo $alias.' ';
+				// $descripcion = $_SESSION['descripcion'];
+				// $alias = $_SESSION['alias'];
+				// echo $descripcion.': ';
+				// echo $alias.' ';
 
-				//query buscador foto
-				include('../database.php');
-				$query = "SELECT fotoU FROM `usuario` WHERE alias='$alias'";
-				$result =  mysqli_query($conexion,$query);
+				// //query buscador foto
+				// include('../database.php');
+				// $query = "SELECT fotoU FROM `usuario` WHERE alias='$alias'";
+				// $result =  mysqli_query($conexion,$query);
 
-				$cant_row= mysqli_num_rows($result);
-				while($row = mysqli_fetch_array($result)){
-					if($cant_row==1){
-						$foto=$row['fotoU'];
-					}else{
-						echo 'no';
-					}
+				// $cant_row= mysqli_num_rows($result);
+				// while($row = mysqli_fetch_array($result)){
+				// 	if($cant_row==1){
+				// 		$foto=$row['fotoU'];
+				// 	}else{
+				// 		echo 'no';
+				// 	}
 					
-				}
+				//} -->
 					
 				
 				?>
@@ -53,7 +53,7 @@ if ($_SESSION['descripcion']=='Administrador' ||  $_SESSION['descripcion']=='Sup
 				<button class="btn btn-outline-primary ml-2">
 					<a class="fas fa-sign-in-alt text-white" href="../login/cerrar-sesion.php" >  Cerrar Sesión</a>
 				</button>
-			  </span>
+			  </span> -->
 			<!-- </div> -->
     </nav> 
     <h2 class="text-center mb-3">BIENVENIDO AL SISTEMA</h2> 
@@ -187,9 +187,9 @@ if ($_SESSION['descripcion']=='Administrador' ||  $_SESSION['descripcion']=='Sup
         
     </body>
 </html>
-<?php
-}else if($_SESSION['rol']==''){
-	echo'no';
-	die();
-}
-?>
+//<?php
+// }else if($_SESSION['rol']==''){
+// 	echo'no';
+// 	die();
+// }
+//?>
