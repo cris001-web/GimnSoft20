@@ -5,7 +5,7 @@ use Dompdf\Dompdf;
 
 
 $id=$_GET['id'];
-echo $id ;
+
 function file_get_contents_curl($url) {
   $ch = curl_init();
 
@@ -23,6 +23,5 @@ $paper_size = array(0,0,450,550);
 $pdf->set_paper($paper_size);
 $pdf->load_html(utf8_decode($html));
 $pdf->render();
-$pdf->stream('Ticket.pdf');
+$pdf->stream('Carnet.pdf');
 ?>
-

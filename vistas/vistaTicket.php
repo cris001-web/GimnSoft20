@@ -23,7 +23,7 @@
     <!DOCTYPE html>
 <html>
     <head>
-        <title>Login</title>
+        <title>Ticket</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
         <!-- css -->
